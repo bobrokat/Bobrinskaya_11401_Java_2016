@@ -14,7 +14,6 @@ public class Status implements Runnable {
     Socket client2;
     Thread thread;
     int message;
-    boolean flag = false;
 
     public Status(Socket client1, Socket client2) {
         this.client1 = client1;
@@ -33,13 +32,7 @@ public class Status implements Runnable {
         this.message = message;
     }
 
-    public boolean isFlag() {
-        return flag;
-    }
 
-    public void setFlag(boolean flag) {
-        this.flag = flag;
-    }
 
     @Override
     public void run() {

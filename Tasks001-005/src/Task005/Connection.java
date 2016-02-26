@@ -17,6 +17,10 @@ public class Connection implements Runnable {
     Thread thread;
     Server server;
     ArrayList<Integer> key;
+    public static int a0;
+    public static int a1;
+    public static int a2;
+    public static int a3;
 
     public int getNumber() {
         return Number;
@@ -31,6 +35,10 @@ public class Connection implements Runnable {
         this.server = server;
         this.status = status;
         this.key = key;
+        a0 = key.get(0);
+        a1 = key.get(1);
+        a2 = key.get(2);
+        a3 = key.get(3);
 
         thread = new Thread(this);
         thread.start();
@@ -38,54 +46,63 @@ public class Connection implements Runnable {
     }
 
     @Override
-    public  void run() {
+    public void run() {
 
-            try {
-                int a0 = key.get(0);
-                int a1 = key.get(1);
-                int a2 = key.get(2);
-                int a3 = key.get(3);
+        try {
 
-
-                PrintWriter bw = new PrintWriter(socket1.getOutputStream(), true);
-                BufferedReader br = new BufferedReader(new InputStreamReader(socket1.getInputStream()));
-                int bulls = 0;
-                int cows = 0;
+            
+            PrintWriter bw = new PrintWriter(socket1.getOutputStream(), true);
+            BufferedReader br = new BufferedReader(new InputStreamReader(socket1.getInputStream()));
+            int bulls;
+            int cows;
 
 
-                while (true) {
-                    ArrayList<Integer> arrayList = new ArrayList<Integer>();
-                    String line = br.readLine();
-                    int c = Integer.parseInt(line);
-                    for (int i = 0; i < 4; i++) {
-                        arrayList.add(c % 10);
-                        c = c / 10;
-                    }
-                    if (arrayList.get(0) == a3) bulls++;
-                    if (arrayList.get(1) == a2) bulls++;
-                    if (arrayList.get(2) == a1) bulls++;
-                    if (arrayList.get(3) == a0) bulls++;
-                    if (arrayList.contains(a3) && arrayList.get(0) != a3) cows++;
-                    if (arrayList.contains(a2) && arrayList.get(1) != a2) cows++;
-                    if (arrayList.contains(a1) && arrayList.get(2) != a1) cows++;
-                    if (arrayList.contains(a0) && arrayList.get(3) != a0) cows++;
-
-                    if (bulls == 4) {
-                        bw.println("You win!");
-                        status.setMessage(this.getNumber());
-                        break;
-                    } else {
-                        bw.println(bulls + " : bulls   " + cows + " : cows");
-                        status.setMessage(0);
-                    }
-                    bulls = 0;
-                    cows = 0;
+            while (true) {
+                ArrayList<Integer> arrayList = new ArrayList<Integer>();
+                String line = br.readLine();
+                int c = Integer.parseInt(line);
+                for (int i = 0; i < 4; i++) {
+                    arrayList.add(c % 10);
+                    c = c / 10;
                 }
 
-            } catch (IOException e) {
-                e.printStackTrace();
+                bulls = getBulls(arrayList);
+                cows = getCows(arrayList);
+
+                if (bulls == 4) {
+                    bw.println("You win!");
+                    status.setMessage(this.getNumber());
+                    break;
+                } else {
+                    bw.println(bulls + " : bulls   " + cows + " : cows");
+                    status.setMessage(0);
+                }
+                bulls = 0;
+                cows = 0;
             }
 
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    public static int getCows(ArrayList<Integer> arrayList) {
+        int cows = 0;
+        if (arrayList.contains(a3) && arrayList.get(0) != a3) cows++;
+        if (arrayList.contains(a2) && arrayList.get(1) != a2) cows++;
+        if (arrayList.contains(a1) && arrayList.get(2) != a1) cows++;
+        if (arrayList.contains(a0) && arrayList.get(3) != a0) cows++;
+        return cows;
+    }
+
+    public static int getBulls(ArrayList<Integer> arrayList) {
+        int bulls = 0;
+        if (arrayList.get(0) == a3) bulls++;
+        if (arrayList.get(1) == a2) bulls++;
+        if (arrayList.get(2) == a1) bulls++;
+        if (arrayList.get(3) == a0) bulls++;
+        return bulls;
     }
 
 }

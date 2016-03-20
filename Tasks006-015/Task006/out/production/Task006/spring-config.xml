@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+
+
+
+
+                            <bean id="kate" class="Contact">
+                                   <constructor-arg name="number" value="89274350840"/>
+                                   <constructor-arg name="name" value="Kate"/>
+                                   <constructor-arg name="photo" value="kate's photo"/>
+                            </bean>
+
+                            <bean id="julia" class="Contact">
+                                   <constructor-arg name="number" value="676858589696"/>
+                                   <constructor-arg name="name" value="Julia"/>
+                            </bean>
+
+                            <bean id="ma" class="Contact">
+                                   <constructor-arg name="number" value="865669697"/>
+                                   <constructor-arg name="name" value="MA"/>
+                            </bean>
+
+       <bean id="contacts" class="java.util.ArrayList">
+              <constructor-arg>
+                     <list>
+                            <ref bean="kate" />
+                            <ref bean="julia" />
+                            <ref bean="ma"/>
+                     </list>
+              </constructor-arg>
+       </bean>
+
+
+
+       <bean id="simplePhone" class="SimplePhone">
+              <constructor-arg name="ownername" value="Granny"/>
+              <constructor-arg name="contacts" ref="contacts"/>
+              <constructor-arg name="caseType" value="aluminium"/>
+              <constructor-arg name="mobilecompany" value="Megafon"/>
+       </bean>
+
+       <bean id="asusZenPhone5" class="AsusZenPhone5">
+              <constructor-arg name="ownername" value="Kate"/>
+              <constructor-arg name="contacts" ref="contacts"/>
+              <constructor-arg name="caseType" value="aluminium"/>
+              <constructor-arg name="mobilecompany" value="Megafon"/>
+       </bean>
+
+       <bean id="alcatel" class="Alcatel">
+              <constructor-arg name="ownername" value="Mom"/>
+              <constructor-arg name="contacts" ref="contacts"/>
+              <constructor-arg name="caseType" value="plastic"/>
+              <constructor-arg name="mobilecompany" value="Megafon"/>
+       </bean>
+
+       <bean id="nokia6300" class="Nokia6300">
+              <constructor-arg name="ownername" value="Uncle Ben"/>
+              <constructor-arg name="contacts" ref="contacts"/>
+              <constructor-arg name="caseType" value="steel"/>
+              <constructor-arg name="mobilecompany" value="Beeline"/>
+       </bean>
+
+       <bean id="sonyEricsonZ550i" class="SonyEricsonZ550i">
+              <constructor-arg name="ownername" value="Aigul"/>
+              <constructor-arg name="contacts" ref="contacts"/>
+              <constructor-arg name="caseType" value="aluminium"/>
+              <constructor-arg name="mobilecompany" value="MTS"/>
+       </bean>
+
+       <bean id="iphone4" class="Iphone4">
+              <constructor-arg name="ownername" value="Julia"/>
+              <constructor-arg name="contacts" ref="contacts"/>
+              <constructor-arg name="caseType" value="glass"/>
+              <constructor-arg name="mobilecompany" value="Beeline"/>
+       </bean>
+
+       <bean id="iphone5" class="Iphone5">
+              <constructor-arg name="ownername" value="Dinar"/>
+              <constructor-arg name="contacts" ref="contacts"/>
+              <constructor-arg name="caseType" value="aluminium"/>
+              <constructor-arg name="mobilecompany" value="Beeline"/>
+       </bean>
+
+       <bean id="iphone6" class="Iphone6">
+              <constructor-arg name="ownername" value="Pliskin"/>
+              <constructor-arg name="contacts" ref="contacts"/>
+              <constructor-arg name="caseType" value="steel"/>
+              <constructor-arg name="mobilecompany" value="Beeline"/>
+       </bean>
+
+       <bean id="fax" class="Fax">
+              <constructor-arg name="ownername" value="Office"/>
+              <constructor-arg name="contacts" ref="contacts"/>
+              <constructor-arg name="caseType" value="plastic"/>
+              <constructor-arg name="mobilecompany" value="tattelecom"/>
+       </bean>
+
+       <bean id="galaxyS" class="GalaxyS">
+              <constructor-arg name="ownername" value="Alena"/>
+              <constructor-arg name="contacts" ref="contacts"/>
+              <constructor-arg name="caseType" value="steel"/>
+              <constructor-arg name="mobilecompany" value="Tele2"/>
+       </bean>
+
+
+
+
+
+
+</beans>

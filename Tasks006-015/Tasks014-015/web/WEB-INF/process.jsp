@@ -16,7 +16,7 @@
    <select type = "text" name = "operation" >
       <option value = "character">number of characters</option>\
       <option value = "words">number of words</option>
-      <option value = "sentence">number of sentences</option>
+      <option value = "sentences">number of sentences</option>
       <option value =  "paragraph">number of paragraphs</option></select>
       <p><input type="submit" value="Process"></p>
     </form>

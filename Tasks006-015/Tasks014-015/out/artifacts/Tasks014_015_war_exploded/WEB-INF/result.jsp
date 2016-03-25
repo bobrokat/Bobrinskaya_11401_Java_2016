@@ -11,6 +11,8 @@
     <title></title>
 </head>
 <body>
+${text}
+<br>
 result is ${result}
 </body>
 </html>

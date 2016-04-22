@@ -89,7 +89,7 @@
             </form>
 
         </div>
-        <a href="index.html" class="logo"><img src="../images/logo.png" alt="your logo" /></a>
+        <a href="/index" class="logo"><img src="../images/logo.png" alt="your logo" /></a>
         <nav class="main-menu">
             <ul><li id="lava-elm"></li>
                 <li class="current"><form action="/listing" >
@@ -128,24 +128,26 @@
 
 
 
-            <h2 class="heading">Добавление нового продукта</h2>
+            <h2 class="heading">Добавление нового продукта  </h2>
 
-            <form method="post" action="" class="form contact-form">
+            <form method="post" enctype="multipart/form-data" action="/contentadmin/addtoDB" class="form contact-form">
                 <fieldset>
                     <label for="contact-your-name">Название: <span class="required"></span></label>
-                    <input type="text" id="contact-your-name" class="input text">
+                    <input type="text" id="contact-your-name" class="input text" name="name">
                     <label for="contact-subject">Цена:</label>
-                    <input type="text" id="contact-subject" class="input text">
+                    <input type="text" id="contact-subject" class="input text" name="price">
                     <label for="type-subject">Тип:</label>
-                    <select class="select-dropdown" id="type-subject" >
-                        <option>Наборы</option>
-                        <option>Пицца</option>
-                        <option>Роллы</option>
-                        <option>Напитки</option>
-                        <option>Дополнительно</option>
+                    <select class="select-dropdown" id="type-subject" name="type" >
+                        <option value="WOK">Наборы</option>
+                        <option value="PIZZA">Пицца</option>
+                        <option value="ROLL">Роллы</option>
+                        <option value="DRINK">Напитки</option>
+                        <option value="DESERT">Десерты</option>
+                        <option value="WOK">Вок</option>
+                        <option value="ANOTHER">Дополнительно</option>
                     </select>
                     <label for="contact-details">Описание: <span class="required"></span></label>
-                    <textarea id="contact-details" rows="30" cols="50" class="input textarea"></textarea>
+                    <textarea id="contact-details" rows="30" cols="50" class="input textarea" name="description"></textarea>
                     <label for="exampleInputFile">Фотография: <span class="required"></span></label>
                     <input type="file" name="photo" id="exampleInputFile">
                     <br>
@@ -159,14 +161,14 @@
             <hr />
             <h2 class="heading">Добавление нового продуктов в слайдер</h2>
 
-            <form method="post" action="/contentadmin" class="form contact-form">
+            <form method="post" action="/contentadmin/addtoSlider" class="form contact-form">
                 <fieldset>
                     <label for="prod1">Название продукта1: <span class="required"></span></label>
-                    <input type="text" id="prod1" class="input text">
+                    <input type="text" id="prod1" name="prod1" class="input text">
                     <label for="prod2">Название продукта2: <span class="required"></span></label>
-                    <input type="text" id="prod2" class="input text">
+                    <input type="text" id="prod2" name="prod2" class="input text">
                     <label for="prod3">Название продукта3: <span class="required"></span></label>
-                    <input type="text" id="prod3" class="input text">
+                    <input type="text" id="prod3" name="prod3" class="input text">
 
                     <button class="button" type="submit">Добавить продукты</button>
                 </fieldset>
@@ -176,18 +178,18 @@
             <hr />
             <h2 class="heading">Добавление нового продуктов в блюда дня</h2>
 
-            <form method="post" action="/contentadmin" class="form contact-form">
+            <form method="post" action="/contentadmin/addtomealstofday" class="form contact-form">
                 <fieldset>
                     <label for="dayprod1">Название продукта1: <span class="required"></span></label>
-                    <input type="text" id="dayprod1" class="input text">
+                    <input type="text" id="dayprod1" name="prod1" class="input text">
                     <label for="dayprod2">Название продукта2: <span class="required"></span></label>
-                    <input type="text" id="dayprod2" class="input text">
+                    <input type="text" id="dayprod2" name="prod2" class="input text">
                     <label for="dayprod3">Название продукта3: <span class="required"></span></label>
-                    <input type="text" id="dayprod3" class="input text">
+                    <input type="text" id="dayprod3" name="prod3" class="input text">
                     <label for="dayprod4">Название продукта4: <span class="required"></span></label>
-                    <input type="text" id="dayprod4" class="input text">
+                    <input type="text" id="dayprod4" name="prod4" class="input text">
                     <label for="dayprod5">Название продукта5: <span class="required"></span></label>
-                    <input type="text" id="dayprod5" class="input text">
+                    <input type="text" id="dayprod5" name="prod5" class="input text">
 
                     <button class="button" type="submit">Добавить продукты</button>
                 </fieldset>
@@ -198,14 +200,14 @@
 
             <h2 class="heading">Добавление нового продуктов в особые блюда</h2>
 
-            <form method="post" action="/contentadmin" class="form contact-form">
+            <form method="post" action="/contentadmin/addtoFeatured" class="form contact-form">
                 <fieldset>
                     <label for="featureprod1">Название продукта1: <span class="required"></span></label>
-                    <input type="text" id="featureprod1" class="input text">
+                    <input type="text" id="featureprod1" name="prod1"class="input text">
                     <label for="featureprod2">Название продукта2: <span class="required"></span></label>
-                    <input type="text" id="featureprod2" class="input text">
+                    <input type="text" id="featureprod2" name="prod2" class="input text">
                     <label for="featureprod3">Название продукта3: <span class="required"></span></label>
-                    <input type="text" id="featureprod3" class="input text">
+                    <input type="text" id="featureprod3" name="prod3" class="input text">
 
                     <button class="button" type="submit">Добавить продукты</button>
                 </fieldset>

@@ -2,6 +2,7 @@ package com.itis.bobrinskaya.service;
 
 
 import com.itis.bobrinskaya.model.Product;
+import com.itis.bobrinskaya.model.enums.ProductTypeEnum;
 
 import java.util.List;
 
@@ -12,10 +13,18 @@ public interface ProductService {
 
     List<Product> getAll();
 
-    List<Product> sendToSlider();
-    List<Product> sendToMealsOfDay();
-    List<Product> sendToFeatured();
+    Product getOne(String name);
 
+    void updateslider(String prod1, String prod2, String prod3);
+    List<Product> getSlider();
 
-    List<Product> sendToListing(String type);
+    void updateMealsOfDay(String prod1, String prod2, String prod3, String prod4, String prod5);
+    List<Product> getMealsOfDay();
+
+    void updateFeaturedMeals(String prod1, String prod2, String prod3);
+    List<Product> getFeaturedMeals();
+
+    List<Product> sendToListing(ProductTypeEnum type);
+
+    void createProduct(Product product);
 }

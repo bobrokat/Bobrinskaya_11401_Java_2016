@@ -24,7 +24,7 @@
 <!-- LOGIN POP UPS -->
 <div id="popup-overlay"></div>
 <div class="popup" id="popup-login">
-    <h2>Login form</h2>
+    <h2>Вход</h2>
     <hr class="separator">
     <form method="post" action="" class="form clearfix">
         <fieldset>
@@ -35,10 +35,13 @@
         </fieldset>
     </form>
     <hr class="separator">
-    <button class="button submit">Login</button>
+    <button class="button submit">Войти</button>
     <div class="links"><a href="#">Forgotten password </a> | <a href="#" class="register-btn"> New account</a></div>
     <a class="close" href="#"></a>
 </div>
+
+
+
 <div class="popup" id="popup-register">
     <h2>Регистрация</h2>
     <hr class="separator">

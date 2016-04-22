@@ -126,15 +126,14 @@
         </div>
         <div class="left-content">
             <div class="meal-details single">
-                <h1>Spinach potato casserole</h1>
+                <h1>${p.getName()}</h1>
 
-                <div class="image"><img src="../main/web/WEB-INF/images/meal-14.jpg" alt=""></div>
-                <div class="date_categories">Date added: 04 May | Categories: <a href="#">Entrees</a>, <a href="#">Seafood</a></div>
-                <p class="descr">Vestibulum ut leo erat. Integer ac est at enim suscipit vulputate. Phasellus ante erat, euismod et posuere ut, convallis sit amet tellus. Nulla in elit non erat tempus luctus at a est. Nullam non orci tortor. Donec congue eleifend tempus. Morbi malesuada consectetur sem ac pharetra. </p>
+                <div class="image"><img src="${p.getPhoto()}" alt=""></div>
+                <p class="descr">${p.getDescription()} </p>
 
                 <hr/>
 
-                <span class="price">$18.32</span>
+                <span class="price">${p.getPrice()}</span>
                 <a href="check-out.html" class="add-to-cart-button">Add to cart</a>
                 <div class="rating">
                     <div class="rating-over" style="width:60%"></div>

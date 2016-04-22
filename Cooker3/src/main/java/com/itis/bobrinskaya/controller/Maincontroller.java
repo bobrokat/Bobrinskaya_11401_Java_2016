@@ -21,12 +21,14 @@ public class Maincontroller {
 
     @RequestMapping(value = {"/index"}, method = RequestMethod.GET)
     public String hiPage(ModelMap model) {
-        List<Product> productsSlider = productService.sendToSlider();
-        List<Product> productOfDay = productService.sendToMealsOfDay();
-        List<Product> productsFeatured = productService.sendToFeatured();
+        List<Product> productsSlider = productService.getSlider();
+        List<Product> productOfDay = productService.getMealsOfDay();
+        List<Product> productsFeatured = productService.getFeaturedMeals();
         model.put("productsSlider", productsSlider);
         model.put("productsOfDay", productOfDay);
         model.put("productsFeatured", productsFeatured);
         return "index";
     }
+
+
 }

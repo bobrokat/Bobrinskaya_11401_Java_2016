@@ -2,6 +2,7 @@ package com.itis.bobrinskaya.repository;
 
 
 import com.itis.bobrinskaya.model.Product;
+import com.itis.bobrinskaya.model.enums.ProductTypeEnum;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
@@ -13,9 +14,10 @@ import java.util.List;
 
 public  interface ProductRepository extends JpaRepository<Product, Long> {
 
-//@Query("select p from com.itis.bobrinskaya.model.Product p where p.name = :name")
-     Product findByName(String name);
 
-     List<Product> findByType(String type);
+     Product findByName(String name);
+     List<Product> findByType(ProductTypeEnum type);
+
+
 
 }

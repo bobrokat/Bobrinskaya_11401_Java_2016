@@ -1169,15 +1169,17 @@ input, textarea {box-shadow:inset 1px 1px 10px rgba(0, 0, 0, 0.3); padding:5px 1
   float: left;
   width: 376px;
 }
-.meal-details h3,
-.meal-details h3  a {
+
+.meal-details  .descr-holder > form > button {
   font-size: 27px;
   color: #321a0a;
   font-weight: normal;  
   font-family: Georgia, serif;
 	text-decoration: none;
+  background: none;
+  border: none;
 }
-.meal-details h3  a:hover  {
+.meal-details .descr-holder > form > button:hover  {
 	text-decoration: underline;
 }
 .meal-details .date_categories {

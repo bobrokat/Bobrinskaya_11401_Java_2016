@@ -5,10 +5,11 @@ package com.itis.bobrinskaya.model.enums;
  */
 public enum ProductTypeEnum {
     PIZZA,
-    ROLLS,
-    DRINKS,
-    DESERTS,
+    ROLL,
+    DRINK,
+    DESERT,
     KOMBO,
+    WOK,
     ANOTHER;
 
 }

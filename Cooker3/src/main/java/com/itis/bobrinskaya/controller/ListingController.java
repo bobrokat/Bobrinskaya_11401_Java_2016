@@ -1,6 +1,7 @@
 package com.itis.bobrinskaya.controller;
 
 import com.itis.bobrinskaya.model.Product;
+import com.itis.bobrinskaya.model.enums.ProductTypeEnum;
 import com.itis.bobrinskaya.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -21,19 +22,16 @@ public class ListingController {
     @Autowired
     ProductService productService;
 
+
+
 @RequestMapping(value = "/listing", method = RequestMethod.GET)
-    public String getListing(ModelMap model, @RequestParam String type){
+    public String getListing(ModelMap model, @RequestParam ProductTypeEnum type){
     List<Product> products = productService.sendToListing(type);
-    List<Product> productsFeatured = productService.sendToFeatured();
+    List<Product> productsFeatured = productService.getFeaturedMeals();
     model.put("products", products);
     model.put("productsFeatured", productsFeatured);
     return "listing";
 }
-    @RequestMapping(value = "/single", method = RequestMethod.GET)
-    public String getSingle(){
-
-        return "single";
-    }
 
 
 }

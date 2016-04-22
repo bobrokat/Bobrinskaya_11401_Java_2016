@@ -1,51 +1,73 @@
 package com.itis.bobrinskaya.model;
 
+import com.itis.bobrinskaya.model.enums.ProductTypeEnum;
 
 import javax.persistence.*;
 
 /**
- * Created by Ekaterina on 12.04.2016.
+ * Created by Ekaterina on 17.04.2016.
  */
 @Entity
-@Table(name = "product")
+@SequenceGenerator(sequenceName = "product_id_seq", name = "prod_gen", allocationSize = 1)
 public class Product {
-    @Id
-    private Long id;
+    private int id;
     private String name;
+    private double price;
+   // private String type;
     private String description;
-    private String type;
     private String photo;
-    private String price;
-
-
-    @Basic
-    @Column(name = "description", nullable = false, insertable = true, updatable = true, length = 2147483647)
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
+    private ProductTypeEnum type;
 
     @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "prod_gen")
     @Column(name = "id", nullable = false, insertable = true, updatable = true)
-    public Long getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(int id) {
         this.id = id;
     }
 
     @Basic
-    @Column(name = "name", nullable = false, insertable = true, updatable = true, length = 50)
+    @Column(name = "name", nullable = false, insertable = true, updatable = true, length = 100)
     public String getName() {
         return name;
     }
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    @Basic
+    @Column(name = "price", nullable = false, insertable = true, updatable = true, precision = 17)
+    public double getPrice() {
+        return price;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
+    }
+
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "type")
+    public ProductTypeEnum getType() {
+        return type;
+    }
+
+    public void setType(ProductTypeEnum type) {
+        this.type = type;
+    }
+
+    @Basic
+    @Column(name = "description", nullable = false, insertable = true, updatable = true, length = 300)
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     @Basic
@@ -58,26 +80,6 @@ public class Product {
         this.photo = photo;
     }
 
-    @Basic
-    @Column(name = "price", nullable = false, insertable = true, updatable = true, length = 50)
-    public String getPrice() {
-        return price;
-    }
-
-    public void setPrice(String price) {
-        this.price = price;
-    }
-
-    @Basic
-    @Column(name = "type", nullable = false, insertable = true, updatable = true, length = 50)
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -85,23 +87,27 @@ public class Product {
 
         Product product = (Product) o;
 
-        if (!id.equals(product.id)) return false;
-        if (!name.equals(product.name)) return false;
-        if (!description.equals(product.description)) return false;
-        if (!type.equals(product.type)) return false;
-        if (!photo.equals(product.photo)) return false;
-        return price.equals(product.price);
+        if (id != product.id) return false;
+        if (Double.compare(product.price, price) != 0) return false;
+        if (name != null ? !name.equals(product.name) : product.name != null) return false;
+        if (type != null ? !type.equals(product.type) : product.type != null) return false;
+        if (description != null ? !description.equals(product.description) : product.description != null) return false;
+        if (photo != null ? !photo.equals(product.photo) : product.photo != null) return false;
 
+        return true;
     }
 
     @Override
     public int hashCode() {
-        int result = id.hashCode();
-        result = 31 * result + name.hashCode();
-        result = 31 * result + description.hashCode();
-        result = 31 * result + type.hashCode();
-        result = 31 * result + photo.hashCode();
-        result = 31 * result + price.hashCode();
+        int result;
+        long temp;
+        result = id;
+        result = 31 * result + (name != null ? name.hashCode() : 0);
+        temp = Double.doubleToLongBits(price);
+        result = 31 * result + (int) (temp ^ (temp >>> 32));
+        result = 31 * result + (type != null ? type.hashCode() : 0);
+        result = 31 * result + (description != null ? description.hashCode() : 0);
+        result = 31 * result + (photo != null ? photo.hashCode() : 0);
         return result;
     }
 }

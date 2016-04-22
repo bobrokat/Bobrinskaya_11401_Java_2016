@@ -146,7 +146,10 @@
                             <div class="image"><img src=${p.getPhoto()} alt=""></div>
                             <div class="info">
                                 <div class="descr-holder">
-                                    <h3><a href="single.html">${p.getName()}</a></h3>
+                                    <form action="/single" method="get">
+                                        <button type="submit" value="${p.getName()}" name="name">${p.getName()}
+                                        </button>
+                                    </form>
                                     <div class="date_categories"></div>
                                     <p>${p.getDescription()} </p>
                                 </div>

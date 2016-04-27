@@ -70,8 +70,8 @@ public class ContentAdminController {
                 byte[] bytes = photo.getBytes();
 
 
-                String rootPath = "C:\\Users\\Ekaterina\\IdeaProjects\\Cooker3\\target\\Cooker3-1.0-SNAPSHOT\\images";
-                String rootPath2 = "C:\\Users\\Ekaterina\\IdeaProjects\\Cooker3\\src\\main\\webapp\\images";
+                String rootPath = "C:\\Work\\Bobrinskaya_11401_Java_2016\\Cooker3\\target\\Cooker3-1.0-SNAPSHOT\\images";
+                String rootPath2 = "C:\\Work\\Bobrinskaya_11401_Java_2016\\Cooker3\\src\\main\\webapp\\images";
                 System.out.println("Server rootPath: " + rootPath);
                 File dir = new File(rootPath);
                 File dir2 = new File(rootPath2);

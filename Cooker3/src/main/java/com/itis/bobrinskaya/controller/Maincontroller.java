@@ -1,5 +1,6 @@
 package com.itis.bobrinskaya.controller;
 
+import com.itis.bobrinskaya.form.RegistrationForm;
 import com.itis.bobrinskaya.model.Product;
 import com.itis.bobrinskaya.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,8 +28,11 @@ public class Maincontroller {
         model.put("productsSlider", productsSlider);
         model.put("productsOfDay", productOfDay);
         model.put("productsFeatured", productsFeatured);
+        model.addAttribute("moder_form", new RegistrationForm());
         return "index";
     }
+
+
 
 
 }

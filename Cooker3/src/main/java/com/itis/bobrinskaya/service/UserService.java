@@ -11,5 +11,6 @@ public interface UserService {
 
      Users getOneById(Long id);
      Users getOneByLogin(String login);
+     void createUser(Users user);
 
 }

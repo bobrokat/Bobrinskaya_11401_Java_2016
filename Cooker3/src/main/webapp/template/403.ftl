@@ -2,8 +2,8 @@
 <head>
 
 </head>
+<title>Access Denied</title>
 <body>
-MY profile
-${user.getLogin()}
+Access Denied
 </body>
 </html>

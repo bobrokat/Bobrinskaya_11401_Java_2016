@@ -74,12 +74,8 @@
         <div class="top-nav">
             <nav>
                 <ul>
-                    <li><a href="#" id="login-btn">Вход</a></li>
-                    <li><a href="#" class="register-btn">Регистрация</a></li>
-                    <li><a href="about.html">О нас</a></li>
-                    <li><a href="contact.html">Контакты</a></li>
-                    <li><a href="menu.html">Меню</a></li>
-                    <li><a href="menu.html">Мой профиль</a></li>
+                    <li><a href="/default">Мой профиль</a></li>
+                    <li><a href="/logout">Выйти</a></li>
                 </ul>
             </nav>
 

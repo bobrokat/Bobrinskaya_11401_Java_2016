@@ -73,12 +73,13 @@
         <div class="top-nav">
             <nav>
                 <ul>
+                <#if user == "anonymousUser">
                     <li><a href="#" id="login-btn">Вход</a></li>
                     <li><a href="#" class="register-btn">Регистрация</a></li>
-                    <li><a href="about.html">О нас</a></li>
-                    <li><a href="contact.html">Контакты</a></li>
-                    <li><a href="menu.html">Меню</a></li>
-                    <li><a href="menu.html">Мой профиль</a></li>
+                <#else >
+                    <li><a href="/default">Мой профиль</a></li>
+                    <li><a href="/logout">Выйти</a></li>
+                </#if>
                 </ul>
             </nav>
 
@@ -88,7 +89,7 @@
             </form>
 
         </div>
-        <a href="/index" class="logo"><img src="/images/logo.png" alt="your logo" /></a>
+        <a href="/index" class="logo"><img src="../images/logo.png" alt="your logo" /></a>
         <nav class="main-menu">
             <ul>
                 <li id="lava-elm"></li>
@@ -134,7 +135,9 @@
                 <hr/>
 
                 <span class="price">${p.getPrice()}</span>
-                <a href="check-out.html" class="add-to-cart-button">Add to cart</a>
+                <form action="/cart" method="post">
+                    <button type="submit" name="productname" class="add-to-cart-button" value=${prodOfDay.getName()}>В корзину</button>
+                </form>
                 <div class="rating">
                     <div class="rating-over" style="width:60%"></div>
                 </div>

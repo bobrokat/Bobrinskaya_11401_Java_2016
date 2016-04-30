@@ -75,12 +75,13 @@
         <div class="top-nav">
             <nav>
                 <ul>
+                <#if user == "anonymousUser">
                     <li><a href="#" id="login-btn">Вход</a></li>
                     <li><a href="#" class="register-btn">Регистрация</a></li>
-                    <li><a href="about.html">О нас</a></li>
-                    <li><a href="contact.html">Контакты</a></li>
-                    <li><a href="menu.html">Меню</a></li>
-                    <li><a href="menu.html">Мой профиль</a></li>
+                <#else >
+                    <li><a href="/default">Мой профиль</a></li>
+                    <li><a href="/logout">Выйти</a></li>
+                </#if>
                 </ul>
             </nav>
 
@@ -147,15 +148,16 @@
                             <div class="info">
                                 <div class="descr-holder">
                                     <form action="/single" method="get">
-                                        <button type="submit" value="${p.getName()}" name="name">${p.getName()}
+                                        <button type="submit" value="${p.getName()}" name="productname">${p.getName()}
                                         </button>
                                     </form>
                                     <div class="date_categories"></div>
                                     <p>${p.getDescription()} </p>
                                 </div>
                                 <span class="price">${p.getPrice()}</span>
-                                <a href="check-out.html" class="add-to-cart-button">add to cart</a>
-
+                                <form action="/cart" method="post">
+                                    <button type="submit" name="productname" class="add-to-cart-button" value=${p.getName()}>В корзину</button>
+                                </form>
                             </div>
                         </li>
                     </#list>

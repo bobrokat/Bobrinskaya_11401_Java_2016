@@ -1,9 +1,11 @@
 package com.itis.bobrinskaya.controller;
 
 import com.itis.bobrinskaya.model.Product;
+import com.itis.bobrinskaya.model.Users;
 import com.itis.bobrinskaya.model.enums.ProductTypeEnum;
 import com.itis.bobrinskaya.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -30,6 +32,15 @@ public class ListingController {
     List<Product> productsFeatured = productService.getFeaturedMeals();
     model.put("products", products);
     model.put("productsFeatured", productsFeatured);
+    Object user = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+    if (user.toString().equals("anonymousUser")){
+        user = user.toString();
+    }
+    else {
+        Users currentUser = (Users) user;
+        user = currentUser.getLogin();
+    }
+    model.put("user", user);
     return "listing";
 }
 

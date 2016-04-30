@@ -79,9 +79,13 @@
         <div class="top-nav">
             <nav>
                 <ul>
-                    <li><a href="#" id="login-btn">Вход</a></li>
-                    <li><a href="#" class="register-btn">Регистрация</a></li>
-                    <li><a href="/default">Мой профиль</a></li>
+                    <#if user == "anonymousUser">
+                        <li><a href="#" id="login-btn">Вход</a></li>
+                        <li><a href="#" class="register-btn">Регистрация</a></li>
+                   <#else >
+                       <li><a href="/default">Мой профиль</a></li>
+                       <li><a href="/logout">Выйти</a></li>
+                    </#if>
                 </ul>
             </nav>
 
@@ -127,7 +131,12 @@
 
         <ul id="mycarousel" class="jcarousel-skin-header-slider">
         <#list productsSlider as p>
-            <li><img src= "${p.getPhoto()}" width="680px"  height="464" alt="" /><div class="description"><span class='price'>${p.getPrice()}</span><span class='name'>${p.getName()}</span><a href="#" class="shop">shop now</a></div></li>
+            <li><img src= "${p.getPhoto()}" width="680px"  height="464" alt="" />
+                <div class="description"><span class='price'>${p.getPrice()}</span><span class='name'>${p.getName()}</span>
+                <form action="/single" method="get">
+                <button type="submit" name="productname" value=${p.getName()}>Подробнее</button>
+            </form>
+            </li>
         </#list>
         </ul>
     </header>
@@ -142,7 +151,9 @@
                             <h1><a href="#">${prodOfDay.getName()}</a></h1>
                             <p>${prodOfDay.getDescription()}</p>
                             <span class="price">${prodOfDay.getPrice()}</span>
-                            <a href="check-out.html" class="add-to-cart-button">add to cart</a>
+                            <form action="/cart" method="post">
+                                <button type="submit" name="productname" class="add-to-cart-button" value=${prodOfDay.getName()}>В корзину</button>
+                            </form>
                         </div>
                     </li>
                 </#list>
@@ -159,7 +170,9 @@
                         <h1><a href="#">${prodFeatured.getName()}</a></h1>
                         <p>${prodFeatured.getDescription()}</p>
                         <span class="price">${prodFeatured.getPrice()}</span>
-                        <a href="check-out.html" class="add-to-cart-button">add to cart</a>
+                        <form action="/cart" method="post">
+                            <button type="submit" name="productname" class="add-to-cart-button" value=${prodFeatured.getName()}>В корзину</button>
+                        </form>
                     </li>
                 </#list>
             </ul>
@@ -171,7 +184,7 @@
                 <ul>
                     <li class="info">
                         <span class="products"><strong>5</strong> товаров</span>
-                        <a href="#">Посмотреть корзину</a>
+                        <a href="/cart">Посмотреть корзину</a>
                     </li>
                     <li class="price">
                         <span class="label">Доставка</span>
@@ -182,7 +195,7 @@
                         <span class="value">$0.00</span>
                     </li>
                 </ul>
-                <a class="submit-button" href="check-out.html">Check out</a>
+                <a class="submit-button" href="/cart">Заказать</a>
                 <div class="graphic"></div>
             </div>
         </div>

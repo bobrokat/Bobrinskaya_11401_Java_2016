@@ -73,11 +73,8 @@
         <div class="top-nav">
             <nav>
                 <ul>
-                    <li><a href="#" id="login-btn">login</a></li>
-                    <li><a href="#" class="register-btn">register</a></li>
-                    <li><a href="about.html">about</a></li>
-                    <li><a href="contact.html">contact</a></li>
-                    <li><a href="menu.html">menu</a></li>
+                    <li><a href="/default">Мой профиль</a></li>
+                    <li><a href="/logout">Выйти</a></li>
                 </ul>
             </nav>
 
@@ -87,7 +84,7 @@
             </form>
 
         </div>
-        <a href="index.html" class="logo"><img src="../images/logo.png" alt="your logo" /></a>
+        <a href="/index" class="logo"><img src="../images/logo.png" alt="your logo" /></a>
         <nav class="main-menu">
             <ul>
                 <li id="lava-elm"></li>
@@ -99,13 +96,13 @@
                         <button type="submit" value="PIZZA" name="type">Пицца</button>
                     </form></li>
                 <li><form action="/listing" >
-                    <button type="submit" value="ROLLS" name="type">Роллы</button>
+                    <button type="submit" value="ROLL" name="type">Роллы</button>
                 </form></li>
                 <li><form action="/listing" >
-                    <button type="submit" value="DRINKS" name="type">Напитки</button>
+                    <button type="submit" value="DRINK" name="type">Напитки</button>
                 </form></li>
                 <li><form action="/listing" >
-                    <button type="submit" value="DESERTS" name="type">Десерты</button>
+                    <button type="submit" value="DESERT" name="type">Десерты</button>
                 </form></li>
                 <li><form action="/listing" >
                     <button type="submit" value="WOK" name="type">Вок</button>
@@ -124,113 +121,61 @@
             </ul>
         </div>
         <div class="left-content">
-            <h2 class="heading">Shopping cart</h2>
+            <h2 class="heading">Корзина</h2>
             <div class="shopping-cart">
                 <div class="list">
+                    <#if productsInCart?has_content>
+
                     <ul>
+                    <#list productsInCart as p>
                         <li>
                             <div class="head">
-                                <div class="cell item">Item</div>
-                                <div class="cell quantity">Quantity</div>
-                                <div class="cell item-price">Item Price</div>
-                                <div class="cell item-total">Item Total</div>
+                                <div class="cell item">Товар</div>
+                                <div class="cell quantity">Количество</div>
+                                <div class="cell item-price">Цена</div>
+                                <div class="cell item-total">Итого</div>
                             </div>
                             <div class="body">
                                 <div class="cell item">
                                     <div class="image">
-                                        <img src="../main/web/WEB-INF/images/meal-7.jpg" alt="">
+                                        <img src= ${p.getPhoto()} alt="">
                                     </div>
                                     <div class="descr">
-                                        <h3>Spinach potato casserole</h3>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendiet condiment augue.</p>
+                                        <h3>${p.getName()}</h3>
+                                        <p>${p.getDescription()}.</p>
                                     </div>
                                 </div>
                                 <div class="cell quantity">
                                     <input type="text" name="" value="1">
                                 </div>
                                 <div class="cell item-price">
-                                    $18.32
+                                    ${p.getPrice()}
                                 </div>
                                 <div class="cell item-total">
-                                    $18.32
+                                    ???
                                 </div>
                             </div>
                             <a class="remove" href="#">X</a>
                         </li>
+                    </#list>
+                        <#else >
+                            <h3 class="heading">У вас пока нет товаров в корзине</h3>
+                    </#if>
 
-                        <li>
-                            <div class="head">
-                                <div class="cell item">Item</div>
-                                <div class="cell quantity">Quantity</div>
-                                <div class="cell item-price">Item Price</div>
-                                <div class="cell item-total">Item Total</div>
-                            </div>
-                            <div class="body">
-                                <div class="cell item">
-                                    <div class="image">
-                                        <img src="../main/web/WEB-INF/images/meal-7.jpg" alt="">
-                                    </div>
-                                    <div class="descr">
-                                        <h3>Spinach potato casserole</h3>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendiet condiment augue.</p>
-                                    </div>
-                                </div>
-                                <div class="cell quantity">
-                                    <input type="text" name="" value="1">
-                                </div>
-                                <div class="cell item-price">
-                                    $18.32
-                                </div>
-                                <div class="cell item-total">
-                                    $18.32
-                                </div>
-                            </div>
-                            <a class="remove" href="#">X</a>
-                        </li>
-
-                        <li>
-                            <div class="head">
-                                <div class="cell item">Item</div>
-                                <div class="cell quantity">Quantity</div>
-                                <div class="cell item-price">Item Price</div>
-                                <div class="cell item-total">Item Total</div>
-                            </div>
-                            <div class="body">
-                                <div class="cell item">
-                                    <div class="image">
-                                        <img src="../main/web/WEB-INF/images/meal-7.jpg" alt="">
-                                    </div>
-                                    <div class="descr">
-                                        <h3>Spinach potato casserole</h3>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendiet condiment augue.</p>
-                                    </div>
-                                </div>
-                                <div class="cell quantity">
-                                    <input type="text" name="" value="1">
-                                </div>
-                                <div class="cell item-price">
-                                    $18.32
-                                </div>
-                                <div class="cell item-total">
-                                    $18.32
-                                </div>
-                            </div>
-                            <a class="remove" href="#">X</a>
-                        </li>
                     </ul>
                 </div>
                 <div class="totals">
                     <ul>
-                        <li class="total">Total: <mark>$54.96</mark></li>
+                        <li class="total">Итого: <mark>${summa}</mark></li>
                     </ul>
                 </div>
                 <div class="buttons">
-                    <a class="button" href="#">Continue shopping</a>
-                    <a class="button" href="#">Empty cart</a>
+                    <a class="button" href="/index">Продолжить</a>
+                    <a class="button" href="/cart/clear">Очистить корзину</a>
                 </div>
             </div>
 
-            <h2 class="heading">Checkout</h2>
+            <h2 class="heading">Заказать</h2>
 
             <div class="checkout">
 
@@ -264,10 +209,15 @@
                 </div>
 
                 <div class="discount">
-                    <label for="checkout-discount-code">Enter Voucher / Discount Code:</label>
-                    <input type="text" id="checkout-discount-code">
+                    <form action="/cart/getOrder" method="post">
+                    <label for="checkout-discount-code">Укажите адрес:</label>
+                    <input type="text" name="address" id="checkout-discount-code">
+                        <label for="checkout-discount-code">Примечания:</label>
+                        <input type="text" name="note" id="checkout-discount-code">
+                        <button type="submit" class="button">Заказать</button>
+                    </form>
                 </div>
-                <a class="button" href="#">Checkout</a>
+                <a class="button" href="#">Заказать</a>
             </div>
         </div>
         <div class="right-content">

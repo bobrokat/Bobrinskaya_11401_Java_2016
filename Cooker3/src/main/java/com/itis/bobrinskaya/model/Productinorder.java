@@ -1,0 +1,72 @@
+package com.itis.bobrinskaya.model;
+
+import javax.persistence.*;
+
+/**
+ * Created by Ekaterina on 29.04.2016.
+ */
+@Entity
+@SequenceGenerator(sequenceName = "productinorder_id_seq", name = "productinorder_gen", allocationSize = 1)
+public class Productinorder {
+    private int id;
+    private Orders orderByOrderId;
+    private Product product;
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "productinorder_gen")
+    @Column(name = "id", nullable = false, insertable = true, updatable = true)
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Productinorder that = (Productinorder) o;
+
+        if (id != that.id) return false;
+
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        return id;
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "order_id", referencedColumnName = "id", nullable = false)
+    public Orders getOrderByOrderId() {
+        return orderByOrderId;
+    }
+
+    public void setOrderByOrderId(Orders orderByOrderId) {
+        this.orderByOrderId = orderByOrderId;
+    }
+
+//    @Basic
+//    @Column(name = "prod_id", nullable = false, insertable = true, updatable = true)
+//    public int getProdId() {
+//        return prodId;
+//    }
+//
+//    public void setProdId(int prodId) {
+//        this.prodId = prodId;
+//    }
+
+    @ManyToOne
+    @JoinColumn(name = "prod_id", referencedColumnName = "id", nullable = false)
+    public Product getProduct() {
+        return product;
+    }
+
+    public void setProduct(Product product) {
+        this.product = product;
+    }
+}

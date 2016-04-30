@@ -12,6 +12,7 @@
               <security:intercept-url pattern="/index" access="permitAll()"/>
               <security:intercept-url pattern="/listing/**" access="permitAll()"/>
               <security:intercept-url pattern="/single" access="permitAll()"/>
+           <security:intercept-url pattern="/cookadmin" access="hasAnyRole('ROLE_COOK_ADMIN', 'ROLE_SYSTEM_ADMIN')"/>
               <security:form-login login-page="/index"
            login-processing-url="/index/process"
            username-parameter="login"
@@ -19,7 +20,7 @@
            default-target-url="/default"
            always-use-default-target="true"
            authentication-failure-url="/index?error=true"/>
-           <security:logout logout-url="/logout" logout-success-url="/"/>
+           <security:logout logout-url="/logout" logout-success-url="/index"/>
            <security:csrf disabled="true"/>
            <security:access-denied-handler ref="accessDeniedHandler"/>
 

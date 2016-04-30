@@ -11,6 +11,10 @@
       <mapping class="com.itis.bobrinskaya.model.Mealsofday"/>
     <mapping class="com.itis.bobrinskaya.model.Featuredmeals"/>
     <mapping class="com.itis.bobrinskaya.model.Users"/>
+    <mapping class="com.itis.bobrinskaya.model.Orders"/>
+    <mapping class="com.itis.bobrinskaya.model.ProductOrder"/>
+    <mapping class="com.itis.bobrinskaya.model.Order"/>
+    <mapping class="com.itis.bobrinskaya.model.Productinorder"/>
     <!-- DB schema will be updated if needed -->
     <!-- <property name="hbm2ddl.auto">update</property> -->
   </session-factory>

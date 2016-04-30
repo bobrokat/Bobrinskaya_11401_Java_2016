@@ -782,6 +782,12 @@ footer .newsletter .submit-button {padding: 8px 6px}
 .description{
   margin-bottom: 12px;
 }
+.jcarousel-skin-header-slider ul li .description > form > button{
+  border: none;
+  background: none;
+  color: white;
+  font-size: 12px;
+}
 #desc-tittle {
   color: #ba1400 !important;
   background: none !important;

@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
@@ -24,6 +25,17 @@ public class CookAdminController {
         System.out.println(orders);
         modelMap.put("orders", orders);
         return "cookadmin";
+    }
+
+    @RequestMapping(method = RequestMethod.POST)
+    public String changeStatus(@RequestParam String checkbox, @RequestParam int orderId){
+        if (checkbox != null){
+            Orders order = orderService.getOne(orderId);
+            order.setStatus(true);
+            orderService.createNewOrder(order);
+        }
+
+        return "redirect:/cookadmin";
     }
 
 }

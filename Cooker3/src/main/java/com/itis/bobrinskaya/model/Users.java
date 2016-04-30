@@ -1,6 +1,8 @@
 package com.itis.bobrinskaya.model;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.Collection;
 
 /**
  * Created by Ekaterina on 20.04.2016.
@@ -14,6 +16,7 @@ public class Users {
     private String password;
     private String role;
     private Integer bonus;
+    private Collection<Orders> orders = new ArrayList<>();
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "user_gen")
@@ -74,6 +77,15 @@ public class Users {
 
     public void setBonus(Integer bonus) {
         this.bonus = bonus;
+    }
+
+@OneToMany(fetch = FetchType.EAGER, mappedBy = "user")
+    public Collection<Orders> getOrders() {
+        return orders;
+    }
+
+    public void setOrders(Collection<Orders> orders) {
+        this.orders = orders;
     }
 
     @Override

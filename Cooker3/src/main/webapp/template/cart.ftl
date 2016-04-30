@@ -116,8 +116,8 @@
     <div class="content clearfix">
         <div class="breadcrumbs">
             <ul>
-                <li><a href="#">Home</a></li>
-                <li>Entrees</li>
+                <li><a href="/index">Главная</a></li>
+                <li>Корзина</li>
             </ul>
         </div>
         <div class="left-content">
@@ -175,12 +175,10 @@
                 </div>
             </div>
 
-            <h2 class="heading">Заказать</h2>
-
             <div class="checkout">
 
                 <div id="payment-methods">
-                    <span class="label">Payment Method:</span>
+                    <span class="label">Выберите способ оплаты:</span>
                     <div class="fatty-belt">
                         <ul>
                             <li>
@@ -217,7 +215,6 @@
                         <button type="submit" class="button">Заказать</button>
                     </form>
                 </div>
-                <a class="button" href="#">Заказать</a>
             </div>
         </div>
         <div class="right-content">

@@ -17,6 +17,7 @@ public class Orders {
     private Double price;
     private Collection<Productinorder> productinorderList = new ArrayList<>();
     private String note;
+    private String date;
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "order_gen")
@@ -53,12 +54,11 @@ public class Orders {
     public Collection<Productinorder> getProductinorderList() {
         return productinorderList;
     }
+
+
     public void setProductinorderList(Collection<Productinorder> productinorderList) {
         this.productinorderList = productinorderList;
     }
-
-
-
 
 
 //    @Basic
@@ -75,7 +75,7 @@ public class Orders {
 
     @Basic
     @Column(name = "status", nullable = false, insertable = true, updatable = true)
-    public boolean isStatus() {
+    public boolean getStatus() {
         return status;
     }
 
@@ -125,5 +125,15 @@ public class Orders {
 
     public void setNote(String note) {
         this.note = note;
+    }
+
+    @Basic
+    @Column(name = "date", nullable = true, insertable = true, updatable = true, length = 2147483647)
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
     }
 }

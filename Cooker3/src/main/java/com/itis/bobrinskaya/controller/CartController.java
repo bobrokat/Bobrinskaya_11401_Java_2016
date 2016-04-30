@@ -6,6 +6,7 @@ import com.itis.bobrinskaya.model.Productinorder;
 import com.itis.bobrinskaya.model.Users;
 import com.itis.bobrinskaya.service.OrderService;
 import com.itis.bobrinskaya.service.ProductService;
+import com.itis.bobrinskaya.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -17,6 +18,8 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -30,9 +33,11 @@ public class CartController {
     @Autowired
     OrderService orderService;
     @Autowired
+    UserService userService;
+    @Autowired
     HttpServletRequest request;
     @RequestMapping (method = RequestMethod.GET)
-    public String getCard(ModelMap modelMap, HttpServletRequest request){
+    public String getCard(ModelMap modelMap){
        Object user =  SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         if (user.toString().equals("anonymousUser")){
             return "redirect:/index";
@@ -61,7 +66,7 @@ public class CartController {
     }
 
     @RequestMapping(value = "/getOrder", method = RequestMethod.POST)
-    public String getOrder(@RequestParam String address, @RequestParam String note, RedirectAttributes redirectAttributes, HttpServletRequest request){
+    public String getOrder(@RequestParam String address, @RequestParam String note, RedirectAttributes redirectAttributes){
        Users user = (Users) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         HttpSession session= request.getSession();
         redirectAttributes.addAttribute("login", user.getLogin());
@@ -69,7 +74,17 @@ public class CartController {
         order.setAddress(address);
         order.setUser(user);
         order.setNote(note);
-        order.setPrice((Double) session.getAttribute("price"));
+        double price = (double) session.getAttribute("price");
+        order.setPrice(price);
+        if(price > 1000){
+            int bonus = user.getBonus();
+            bonus += 100;
+            user.setBonus(bonus);
+            userService.createUser(user);
+
+        }
+        SimpleDateFormat format = new SimpleDateFormat("dd.MM.yyyy hh:mm");
+        order.setDate(format.format(new Date()));
         orderService.createNewOrder(order);
 
         List<Product> products = (List<Product>) session.getAttribute("productsInCart");
@@ -82,6 +97,7 @@ public class CartController {
             orderService.addproducts(productinorder);
 
         }
+        clearCart(request);
         return "redirect:/profile/{login}";
     }
 

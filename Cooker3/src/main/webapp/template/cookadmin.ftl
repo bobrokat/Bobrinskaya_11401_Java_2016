@@ -145,8 +145,8 @@
                                 <h4><span class="text">${o.getId()}</span><span class="line"></span></h4>
                                 <!--<div class="img-holder"><div class="canvas"></div><img src="images/meal-15.jpg" alt=""></div>-->
                                 <div class="price">
-                                    <h5><a href="single.html">${o.getUser().getLogin()}</a></h5>
-                                    <span>${o.getPrice()}</span>
+                                    <h5><a >${o.getUser().getLogin()}</a></h5>
+                                    <span>${o.getDate()}</span>
                                 </div>
                                 <div class="description">
                                     <b>Заказ:</b>
@@ -154,21 +154,28 @@
                                     ${product.getProduct().getName()},
                                     </#list>
                                     <br>
-                                    <b> Аддресс: </b>${o.getAddress()}
+                                    <b>Сумма :</b>${o.getPrice()}
+                                    <br>
+                                    <b>Адрес: </b>${o.getAddress()}
                                     <br>
                                     <b> Телефон: </b>${o.getUser().getPhone()}
                                     <br>
-                                    <b>Примечание: </b>${o.getNote()}
+                                    <b>Примечание: </b>
+                                    <#if o.getNote()??>
+                                        ${o.getNote()}
+                                    </#if>
                                 </div>
                                 <div class="status">
+                                    <form action="/cookadmin" method="post">
                                     Заказ отправлен: <input type="checkbox" name="checkbox" value="true">
+                                        <button type="submit"  name="orderId" value=${o.getId()}  class="add-to-cart-button">ok</button>
+                                    </form>
                                 </div>
 
                             </li>
                         </#list>
                     <#else >
                         пока ниче нет
-
                     </#if>
 
                     </ul>

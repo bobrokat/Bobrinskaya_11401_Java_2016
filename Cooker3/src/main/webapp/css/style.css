@@ -1026,8 +1026,8 @@ hr {
 .content blockquote {
 	position: relative;
 	width: 674px;
-	color: #946d29;
-	font-size: 16px;
+	color: black;
+	font-size: 18px;
 	line-height: 24px;
 	font-style: italic;
 	font-family: Georgia;
@@ -1341,7 +1341,11 @@ input, textarea {box-shadow:inset 1px 1px 10px rgba(0, 0, 0, 0.3); padding:5px 1
 	padding:0 0 0 10px;
 }
 .shopping-cart .item .image {border: 4px #eedab3 solid}
-.shopping-cart .item .image img {display: block}
+.shopping-cart .item .image img {
+  display: block;
+  width: 140px;
+  height: 105px;
+}
 .shopping-cart .item h3 {
 	color: #ba1400;
 	padding: 0 0 10px;
@@ -1423,7 +1427,6 @@ input, textarea {box-shadow:inset 1px 1px 10px rgba(0, 0, 0, 0.3); padding:5px 1
 	border-radius: 3px;
 }
 .checkout .button {
-	float: right;
 	margin-top: 15px;
 	font-size: 24px;
 }

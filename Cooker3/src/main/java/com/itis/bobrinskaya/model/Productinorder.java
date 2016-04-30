@@ -50,16 +50,6 @@ public class Productinorder {
         this.orderByOrderId = orderByOrderId;
     }
 
-//    @Basic
-//    @Column(name = "prod_id", nullable = false, insertable = true, updatable = true)
-//    public int getProdId() {
-//        return prodId;
-//    }
-//
-//    public void setProdId(int prodId) {
-//        this.prodId = prodId;
-//    }
-
     @ManyToOne
     @JoinColumn(name = "prod_id", referencedColumnName = "id", nullable = false)
     public Product getProduct() {

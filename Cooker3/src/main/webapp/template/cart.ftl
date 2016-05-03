@@ -155,7 +155,9 @@
                                     ???
                                 </div>
                             </div>
-                            <a class="remove" href="#">X</a>
+                            <form action="/cart/removeProduct">
+                            <button type="submit" class="remove" name="prodremove" value="${p.getName()}">X</>
+                            </form>
                         </li>
                     </#list>
                         <#else >
@@ -176,30 +178,18 @@
             </div>
 
             <div class="checkout">
-
+                <form action="/cart/getOrder" method="post">
                 <div id="payment-methods">
                     <span class="label">Выберите способ оплаты:</span>
                     <div class="fatty-belt">
                         <ul>
                             <li>
-                                <div class="logo"><img src="../main/web/WEB-INF/images/payment-option.jpg" alt=""></div>
-                                <div class="form-controls radio"><input type="radio" name="payment_option" value="1" checked="checked"></div>
+                                <div class="logo"><img src="../images/payment-option.jpg" alt=""></div>
+                                <div class="form-controls radio"><input type="radio" name="payment_option" value="money" checked="checked"></div>
                             </li>
                             <li>
-                                <div class="logo"><img src="../main/web/WEB-INF/images/payment-option.jpg" alt=""></div>
-                                <div class="form-controls radio"><input type="radio" name="payment_option" value="1"></div>
-                            </li>
-                            <li>
-                                <div class="logo"><img src="../main/web/WEB-INF/images/payment-option.jpg" alt=""></div>
-                                <div class="form-controls radio"><input type="radio" name="payment_option" value="1"></div>
-                            </li>
-                            <li>
-                                <div class="logo"><img src="../main/web/WEB-INF/images/payment-option.jpg" alt=""></div>
-                                <div class="form-controls radio"><input type="radio" name="payment_option" value="1"></div>
-                            </li>
-                            <li>
-                                <div class="logo"><img src="../main/web/WEB-INF/images/payment-option.jpg" alt=""></div>
-                                <div class="form-controls radio"><input type="radio" name="payment_option" value="1"></div>
+                                <div class="logo"><img src="../images/bonus.jpg" alt=""></div>
+                                <div class="form-controls radio"><input type="radio" name="payment_option" value="bonus"></div>
                             </li>
                         </ul>
                     </div>
@@ -207,14 +197,15 @@
                 </div>
 
                 <div class="discount">
-                    <form action="/cart/getOrder" method="post">
+
                     <label for="checkout-discount-code">Укажите адрес:</label>
                     <input type="text" name="address" id="checkout-discount-code">
                         <label for="checkout-discount-code">Примечания:</label>
                         <input type="text" name="note" id="checkout-discount-code">
                         <button type="submit" class="button">Заказать</button>
-                    </form>
+
                 </div>
+                </form>
             </div>
         </div>
         <div class="right-content">
@@ -251,7 +242,7 @@
 
             <div class="featured-meals">
 
-                <h2 class="heading">Featured meals</h2>
+                <h2 class="heading">Особые блюда</h2>
 
                 <div class="prev-next-buttons">
                     <a href="#" class="prev"></a>
@@ -260,24 +251,17 @@
 
                 <div class="block meal">
                     <ul>
-                        <li>
-                            <div class="image">
-                                <img src="../main/web/WEB-INF/images/meal-8.jpg" alt="">
-                            </div>
-                            <h1>Skewers</h1>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing...</p>
-                            <span class="price">$18.32</span>
-                            <a href="check-out.html" class="add-to-cart-button">add to cart</a>
-                        </li>
-                        <li>
-                            <div class="image">
-                                <img src="../main/web/WEB-INF/images/meal-8.jpg" alt="">
-                            </div>
-                            <h1>Skewers</h1>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing...</p>
-                            <span class="price">$18.32</span>
-                            <a href="check-out.html" class="add-to-cart-button">add to cart</a>
-                        </li>
+                        <#list productsFeatured as prodFeatured>
+                            <li class="meal">
+                                <div class="img-holder"><img src=${prodFeatured.getPhoto()} alt=""></div>
+                                <h1><a href="#">${prodFeatured.getName()}</a></h1>
+                                <p>${prodFeatured.getDescription()}</p>
+                                <span class="price">${prodFeatured.getPrice()}</span>
+                                <form action="/cart" method="post">
+                                    <button type="submit" name="productname" class="add-to-cart-button" value=${prodFeatured.getName()}>В корзину</button>
+                                </form>
+                            </li>
+                        </#list>
                     </ul>
                 </div>
             </div>

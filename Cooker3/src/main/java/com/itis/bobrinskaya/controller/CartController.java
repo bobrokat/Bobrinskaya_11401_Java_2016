@@ -37,20 +37,22 @@ public class CartController {
     @Autowired
     HttpServletRequest request;
     @RequestMapping (method = RequestMethod.GET)
-    public String getCard(ModelMap modelMap){
+    public String getCard(ModelMap model){
        Object user =  SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        List<Product> productsFeatured = productService.getFeaturedMeals();
+        model.put("productsFeatured", productsFeatured);
         if (user.toString().equals("anonymousUser")){
             return "redirect:/index";
         }
         else {
             HttpSession session = request.getSession();
             List<Product> productsInCart = (List<Product>) session.getAttribute("productsInCart");
-            modelMap.put("productsInCart", productsInCart);
+            model.put("productsInCart", productsInCart);
             double sum = 0;
             for(Product product: productsInCart){
                 sum += product.getPrice();
             }
-            modelMap.put("summa", sum);
+            model.put("summa", sum);
             session.setAttribute("price", sum);
             return "cart";
         }
@@ -66,7 +68,7 @@ public class CartController {
     }
 
     @RequestMapping(value = "/getOrder", method = RequestMethod.POST)
-    public String getOrder(@RequestParam String address, @RequestParam String note, RedirectAttributes redirectAttributes){
+    public String getOrder(@RequestParam String address, @RequestParam String note, @RequestParam String payment_option, RedirectAttributes redirectAttributes){
        Users user = (Users) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         HttpSession session= request.getSession();
         redirectAttributes.addAttribute("login", user.getLogin());
@@ -75,14 +77,37 @@ public class CartController {
         order.setUser(user);
         order.setNote(note);
         double price = (double) session.getAttribute("price");
-        order.setPrice(price);
-        if(price > 1000){
-            int bonus = user.getBonus();
-            bonus += 100;
-            user.setBonus(bonus);
-            userService.createUser(user);
+        if (payment_option.equals("bonus")) {
+            if (user.getBonus() >= 0) {
+                if(user.getBonus() >= price){
+                    order.setPrice((double) 0);
+                    user.setBonus((int) (user.getBonus() - price));
+                    userService.createUser(user);
+                }
+                else {
+                    order.setPrice(price - user.getBonus());
+                    user.setBonus(0);
+                    userService.createUser(user);
+                }
+
+
+            }
+            else {
+                return "redirect:/cart";
+            }
 
         }
+        else {
+            order.setPrice(price);
+            if(price > 1000){
+                int bonus = user.getBonus();
+                bonus += 100;
+                user.setBonus(bonus);
+                userService.createUser(user);
+
+            }
+        }
+
         SimpleDateFormat format = new SimpleDateFormat("dd.MM.yyyy hh:mm");
         order.setDate(format.format(new Date()));
         orderService.createNewOrder(order);
@@ -108,6 +133,16 @@ public class CartController {
         products.clear();
         session.setAttribute("productsInCart", products);
         return "redirect:/cart";
+    }
+
+    @RequestMapping(value = "/removeProduct")
+    public String removeProduct(@RequestParam String prodremove ){
+        HttpSession session = request.getSession();
+        List<Product> productsInCart = (List<Product>) session.getAttribute("productsInCart");
+        productsInCart.remove(productService.getOne(prodremove));
+        session.setAttribute("productsInCart", productsInCart);
+        return "redirect:/cart";
+
     }
 
 }

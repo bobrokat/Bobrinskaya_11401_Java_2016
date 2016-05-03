@@ -235,4 +235,66 @@ $('#payment-methods ul li').click(function () {
     $('input', this).attr('checked',true);    
 });
 
+
+//dropdown
+
+$(document).ready(function(){
+	$('.topmenu ul li').hover(
+		function() {
+			// добавляем проверочку - не загружали ли до этого элементы
+			if ($(this).find('ul').length == 0) {
+				var id = $(this).attr('id');
+				var li = $(this);
+				$.ajax({
+					url: 'ajax/'+id+'.html',
+					beforeSend: function(){
+						li.addClass('loading');
+					},
+					success: function(data){
+						li.append(data);
+						li.find('ul').stop(true, true); // останавливаем всю текущую анимацию
+						li.find('ul').slideDown();
+						li.removeClass('loading');
+					}
+				});
+			} else {
+				$(this).find('ul').stop(true, true); // останавливаем всю текущую анимацию
+				$(this).find('ul').slideDown();
+			}
+			$(this).addClass("active");
+		},
+		function() {
+			$(this).find('ul').slideUp('fast');
+			$(this).removeClass("active");
+		}
+	);
+});
+
+
+f = function( select){
+	jQuery.ajax(
+		{
+			url:"/cookadmin/toajax",
+			data: {"select" : jQuery("#select").val()},
+			dataType: "json",
+			success: function(data){
+				if (data.orders) {
+					jQuery("#res").html("");
+					for (var i = 0; i < data.orders.size; i ++) {
+						jQuery("#res").append("<li>" + data.orders[i].getUser().getLogin() + "</li>");
+					}
+				}
+				else {
+					jQuery("#res").append("No!")
+				}
+			}
+
+		});
+}
+f();
+change = function (param) {
+	jQuery("#select").val(param);
+	f();
+}
+
   

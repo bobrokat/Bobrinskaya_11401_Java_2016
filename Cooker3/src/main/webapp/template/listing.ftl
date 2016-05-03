@@ -21,63 +21,13 @@
 
 <body>
 
-<!-- LOGIN POP UPS -->
-<div id="popup-overlay"></div>
-<div class="popup" id="popup-login">
-    <h2>Login form</h2>
-    <hr class="separator">
-    <form method="post" action="" class="form clearfix">
-        <fieldset>
-            <label for="login-username">Username:</label>
-            <input type="text" name="" id="login-username" class="input text">
-            <label for="login-password">Password:</label>
-            <input type="password" name="" id="login-password" class="input text">
-        </fieldset>
-    </form>
-    <hr class="separator">
-    <button class="button submit">Login</button>
-    <div class="links"><a href="#">Forgotten password </a> | <a href="#" class="register-btn"> New account</a></div>
-    <a class="close" href="#"></a>
-</div>
-<div class="popup" id="popup-register">
-    <h2>Registration form</h2>
-    <hr class="separator">
-    <form method="post" action="" class="form clearfix">
-        <fieldset>
-            <label for="login-username">Username:</label>
-            <input type="text" name="" id="login-username" class="input text">
-            <label for="login-email">Email:</label>
-            <input type="text" name="" id="login-email" class="input text error" value="Error">
-            <label for="login-password">Password:</label>
-            <input type="password" name="" id="login-password" class="input text">
-            <label for="login-confirm-password">Confirm password:</label>
-            <input type="password" name="" id="login-confirm-password" class="input text">
-        </fieldset>
 
-        <hr class="separator">
-
-        <div class="checks">
-            <div class="check-row">
-                <label><input type="checkbox" class="input checkbox">I have read and agree to the <a href="#">Terms &amp; Conditions</a></label>
-            </div>
-            <div class="check-row">
-                <label><input type="checkbox" class="input checkbox">I agree to recieve promotional mails</label>
-            </div>
-        </div>
-
-        <button class="button submit">Register now</button>
-    </form>
-    <a class="close" href="#"></a>
-</div>
-<!-- END LOGIN POP UPS -->
 <div class='wrapper'>
     <header>
         <div class="top-nav">
             <nav>
                 <ul>
                 <#if user == "anonymousUser">
-                    <li><a href="#" id="login-btn">Вход</a></li>
-                    <li><a href="#" class="register-btn">Регистрация</a></li>
                 <#else >
                     <li><a href="/default">Мой профиль</a></li>
                     <li><a href="/logout">Выйти</a></li>

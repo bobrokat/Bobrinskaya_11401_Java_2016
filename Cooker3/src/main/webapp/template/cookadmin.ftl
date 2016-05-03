@@ -16,61 +16,12 @@
 
 
     <!-- All JavaScript at the bottom, except for Modernizr which enables HTML5 elements & feature detects -->
-    <script src="../main/web/WEB-INF/js/libs/modernizr-1.7.min.js"></script>
+    <script src="../js/libs/modernizr-1.7.min.js"></script>
 </head>
 
 <body>
 
-<!-- LOGIN POP UPS -->
-<div id="popup-overlay"></div>
-<div class="popup" id="popup-login">
-    <h2>Login form</h2>
-    <hr class="separator">
-    <form method="post" action="" class="form clearfix">
-        <fieldset>
-            <label for="login-username">Логин:</label>
-            <input type="text" name="" id="login-username" class="input text">
-            <label for="login-password">Пароль:</label>
-            <input type="password" name="" id="login-password" class="input text">
-        </fieldset>
-    </form>
-    <hr class="separator">
-    <button class="button submit">Login</button>
-    <div class="links"><a href="#">Forgotten password </a> | <a href="#" class="register-btn"> New account</a></div>
-    <a class="close" href="#"></a>
-</div>
-<div class="popup" id="popup-register">
-    <h2>Регистрация</h2>
-    <hr class="separator">
-    <form method="post" action="" class="form clearfix">
-        <fieldset>
-            <label for="login-username">Логин:</label>
-            <input type="text" name="" id="login-username" class="input text">
-            <label for="login-email">Телефон:</label>
-            <input type="text" name="" id="login-email" class="input text">
-            <label for="login-password">Пароль:</label>
-            <input type="password" name="" id="login-password" class="input text">
-            <label for="login-confirm-password">Повторите пароль:</label>
-            <input type="password" name="" id="login-confirm-password" class="input text">
-        </fieldset>
 
-        <hr class="separator">
-
-        <div class="checks">
-            <div class="check-row">
-                <label><input type="checkbox" class="input checkbox">I have read and agree to the <a href="#">Terms
-                    &amp; Conditions</a></label>
-            </div>
-            <div class="check-row">
-                <label><input type="checkbox" class="input checkbox">I agree to recieve promotional mails</label>
-            </div>
-        </div>
-
-        <button class="button submit">Register now</button>
-    </form>
-    <a class="close" href="#"></a>
-</div>
-<!-- END LOGIN POP UPS -->
 <div class='wrapper'>
     <header>
         <div class="top-nav">
@@ -138,8 +89,24 @@
                 <div class="left-part">
                     <h3>Заказы в очереди</h3>
 
+                    <#--<div class="topmenu">-->
+                        <#--<ul>-->
+                            <#--<li id="menu1"><a href="#" title="Меню 1">Показать заказы:</a>-->
+                                <#--<ul>-->
+                                    <#--<li><a href="#" onclick="change('all')">Все</a></li>-->
+                                    <#--<li><a href="#" onclick="change('ready')">Готовые</a></li>-->
+                                    <#--<li><a href="#" onclick="change('notready')">Не готовые</a></li>-->
+                                <#--</ul>-->
+                                <#--<input id = "select"  type="hidden" value="notready">-->
+                            <#--</li>-->
+                        <#--</ul>-->
+                    <#--</div>-->
+
                     <ul>
+                    <div id = "res"></div>
                     <#if orders??>
+
+
                         <#list orders as o>
                             <li>
                                 <h4><span class="text">${o.getId()}</span><span class="line"></span></h4>
@@ -165,12 +132,14 @@
                                         ${o.getNote()}
                                     </#if>
                                 </div>
+                                <#if o.getStatus() = false>
                                 <div class="status">
                                     <form action="/cookadmin" method="post">
-                                    Заказ отправлен: <input type="checkbox" name="checkbox" value="true">
+                                    Заказ готов: <input type="checkbox" name="checkbox" value="true">
                                         <button type="submit"  name="orderId" value=${o.getId()}  class="add-to-cart-button">ok</button>
                                     </form>
                                 </div>
+                                </#if>
 
                             </li>
                         </#list>
@@ -236,9 +205,9 @@
         </div>
     </div>
 </footer>
-<script type="text/javascript" src="../main/web/WEB-INF/js/libs/jquery-1.7.1.min.js"></script>
-<script src="../main/web/WEB-INF/js/libs/jquery.easing.1.3.js"></script>
-<script src="../main/web/WEB-INF/js/script.js"></script>
-<script src="../main/web/WEB-INF/js/libs/jquery.jcarousel.min.js"></script>
+<script type="text/javascript" src="../js/libs/jquery-1.7.1.min.js"></script>
+<script src="../js/libs/jquery.easing.1.3.js"></script>
+<script src="../js/script.js"></script>
+<script src="../js/libs/jquery.jcarousel.min.js"></script>
 </body>
 </html>

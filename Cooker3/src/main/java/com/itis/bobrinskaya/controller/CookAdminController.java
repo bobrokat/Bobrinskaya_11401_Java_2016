@@ -8,7 +8,9 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -21,9 +23,9 @@ public class CookAdminController {
     OrderService orderService;
     @RequestMapping(method = RequestMethod.GET)
     public String getCookPage(ModelMap modelMap){
-       List<Orders> orders = orderService.getNotReady();
-        System.out.println(orders);
-        modelMap.put("orders", orders);
+        List<Orders> orders = orderService.getNotReady();
+
+       modelMap.put("orders", orders);
         return "cookadmin";
     }
 
@@ -36,6 +38,20 @@ public class CookAdminController {
         }
 
         return "redirect:/cookadmin";
+    }
+
+    @RequestMapping(value = "/toajax", method = RequestMethod.GET)
+    public  @ResponseBody List<Orders> makeJSon(@RequestParam String select){
+        List<Orders> orders = new ArrayList<>();
+        switch (select){
+            case "notready": orders = orderService.getNotReady();
+                break;
+            case "ready" : orders = orderService.getAll();
+                break;
+            case "all" : orders = orderService.getAll();
+                break;
+        }
+        return orders;
     }
 
 }

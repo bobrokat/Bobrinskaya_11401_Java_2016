@@ -21,37 +21,19 @@
 
 <!-- LOGIN POP UPS -->
 <div id="popup-overlay"></div>
-<div class="popup" id="popup-login">
-    <h2>Login form</h2>
-    <hr class="separator">
-    <form method="post" action="" class="form clearfix">
-        <fieldset>
-            <label for="login-username">Username:</label>
-            <input type="text" name="" id="login-username" class="input text">
-            <label for="login-password">Password:</label>
-            <input type="password" name="" id="login-password" class="input text">
-        </fieldset>
-    </form>
-    <hr class="separator">
-    <button class="button submit">Login</button>
-    <div class="links"><a href="#">Forgotten password </a> | <a href="#" class="register-btn"> New account</a></div>
-    <a class="close" href="#"></a>
-</div>
 <div class="popup" id="popup-register">
-    <h2>Registration form</h2>
+    <h2>Редактирование профиля</h2>
     <hr class="separator">
-    <form method="post" action="" class="form clearfix">
+    <form method="post" action="/profile/edit" class="form clearfix">
         <fieldset>
-            <label for="login-username">Username:</label>
-            <input type="text" name="" id="login-username" class="input text">
-            <label for="login-email">Email:</label>
-            <input type="text" name="" id="login-email" class="input text error" value="Error">
-            <label for="login-password">Password:</label>
-            <input type="password" name="" id="login-password" class="input text">
-            <label for="login-confirm-password">Confirm password:</label>
-            <input type="password" name="" id="login-confirm-password" class="input text">
-        </fieldset>
-
+            <label for="login-username">Логин:</label>
+            <input type="text" name="login" id="login-username" class="input text">
+            <label for="login-email">Телефон:</label>
+            <input type="text" name="phone" id="login-email" class="input text" >
+            <label for="login-password">Пароль:</label>
+            <input type="password" name="password" id="login-password" class="input text">
+            <label for="login-confirm-password">Повторите пароль:</label>
+            <input type="password" name="repassword" id="login-confirm-password" class="input text">
         <hr class="separator">
 
         <div class="checks">
@@ -63,7 +45,7 @@
             </div>
         </div>
 
-        <button class="button submit">Register now</button>
+        <button class="button submit">Сохранить</button>
     </form>
     <a class="close" href="#"></a>
 </div>
@@ -74,6 +56,7 @@
             <nav>
                 <ul>
                     <li><a href="/default">Мой профиль</a></li>
+                    <li><a href="#" class="register-btn">Редактировать</a></li>
                     <li><a href="/logout">Выйти</a></li>
                 </ul>
             </nav>
@@ -137,6 +120,8 @@
 
                             <#list user.getOrders() as o>
                                 <li>${o.getDate()}
+                                    <br>
+                                    Стоимость: ${o.getPrice()}
                                     <br>
                                     <#list o.getProductinorderList() as product>
                                     ${product.getProduct().getName()},

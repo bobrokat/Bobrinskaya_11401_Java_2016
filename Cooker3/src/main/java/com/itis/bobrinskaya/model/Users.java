@@ -1,6 +1,9 @@
 package com.itis.bobrinskaya.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
 
@@ -9,13 +12,14 @@ import java.util.Collection;
  */
 @Entity
 @SequenceGenerator(sequenceName = "users_id_seq", name = "user_gen", allocationSize = 1)
-public class Users {
+public class Users implements Serializable {
     private int id;
     private String login;
     private String phone;
     private String password;
     private String role;
     private Integer bonus;
+    @JsonBackReference
     private Collection<Orders> orders = new ArrayList<>();
 
     @Id

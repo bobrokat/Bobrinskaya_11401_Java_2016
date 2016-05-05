@@ -151,23 +151,12 @@
             </div>
 
             <div class="cart-box">
-                <div class="top">Cart</div>
+                <div class="top">Корзина</div>
                 <div class="body">
                     <ul>
                         <li class="info">
-                            <span class="products"><strong>5</strong> products</span>
-                            <a href="#">View cart</a>
-                        </li>
-                        <li class="price">
-                            <span class="label">Shipping</span>
-                            <span class="value">$0.00</span>
-                        </li>
-                        <li class="price">
-                            <span class="label">Total</span>
-                            <span class="value">$0.00</span>
-                        </li>
                     </ul>
-                    <a class="submit-button" href="check-out.html">Check out</a>
+                    <a class="submit-button" href="/cart">Посмотреть</a>
                     <div class="graphic"></div>
                 </div>
             </div>

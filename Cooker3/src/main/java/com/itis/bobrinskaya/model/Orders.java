@@ -1,6 +1,10 @@
 package com.itis.bobrinskaya.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
 
@@ -9,12 +13,14 @@ import java.util.Collection;
  */
 @Entity
 @SequenceGenerator(sequenceName = "order_id_seq", name = "order_gen", allocationSize = 1)
-public class Orders {
+public class Orders implements Serializable {
     private int id;
     private String address;
+    @JsonManagedReference
     private Users user;
     private boolean status;
     private Double price;
+    @JsonBackReference
     private Collection<Productinorder> productinorderList = new ArrayList<>();
     private String note;
     private String date;
@@ -59,19 +65,6 @@ public class Orders {
     public void setProductinorderList(Collection<Productinorder> productinorderList) {
         this.productinorderList = productinorderList;
     }
-
-
-//    @Basic
-//    @Column(name = "user_id", nullable = false, insertable = true, updatable = true)
-//    public int getUserId() {
-//        return userId;
-//    }
-//
-//    public void setUserId(int userId) {
-//        this.userId = userId;
-//    }
-
-
 
     @Basic
     @Column(name = "status", nullable = false, insertable = true, updatable = true)

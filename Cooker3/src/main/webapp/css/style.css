@@ -1716,7 +1716,7 @@ input, textarea {
 
 .shopping-cart .item-price,
 .shopping-cart .item-total {
-    width: 97px;
+    width: 200px;
     text-align: center;
     font-weight: bold;
 }
@@ -2375,4 +2375,18 @@ input, textarea {
 .text-center {
     margin: auto;
     align-content: center;
+}
+
+.ajaxnav a{
+    color: black;
+    background: #f3e9d8;
+    font-size: 13px;
+    text-align: center;
+    border-radius: 4px;
+    padding: 7px 20px;
+    align-content: center;
+}
+
+.ajaxnav a :hover{
+    background: #CDC3B3;
 }

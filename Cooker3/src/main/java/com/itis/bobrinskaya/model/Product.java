@@ -3,13 +3,14 @@ package com.itis.bobrinskaya.model;
 import com.itis.bobrinskaya.model.enums.ProductTypeEnum;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 /**
  * Created by Ekaterina on 17.04.2016.
  */
 @Entity
 @SequenceGenerator(sequenceName = "product_id_seq", name = "prod_gen", allocationSize = 1)
-public class Product {
+public class Product implements Serializable {
     private int id;
     private String name;
     private double price;

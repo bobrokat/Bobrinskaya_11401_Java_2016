@@ -183,19 +183,8 @@
             <div class="body">
                 <ul>
                     <li class="info">
-                        <span class="products"><strong>5</strong> товаров</span>
-                        <a href="/cart">Посмотреть корзину</a>
-                    </li>
-                    <li class="price">
-                        <span class="label">Доставка</span>
-                        <span class="value">$0.00</span>
-                    </li>
-                    <li class="price">
-                        <span class="label">Всего</span>
-                        <span class="value">$0.00</span>
-                    </li>
                 </ul>
-                <a class="submit-button" href="/cart">Заказать</a>
+                <a class="submit-button" href="/cart">Посмотреть</a>
                 <div class="graphic"></div>
             </div>
         </div>

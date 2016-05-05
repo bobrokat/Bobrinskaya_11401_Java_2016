@@ -12,7 +12,7 @@ import java.util.List;
  */
 public interface OrderRepository extends JpaRepository<Orders, Integer> {
 
-@Query("select o from Orders o where o.status = false ")
+    @Query("select o from Orders o where o.status = false ")
     List<Orders> findNotReady();
 
     @Query("select max(o.id) from Orders o where o.user.id = :id")

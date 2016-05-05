@@ -145,6 +145,16 @@
 
 
     </div>
+    <div class="cart-box">
+        <div class="top">Корзина</div>
+        <div class="body">
+            <ul>
+                <li class="info">
+            </ul>
+            <a class="submit-button" href="/cart">Посмотреть</a>
+            <div class="graphic"></div>
+        </div>
+    </div>
 
 
 </div>

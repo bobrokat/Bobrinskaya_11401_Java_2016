@@ -1,15 +1,20 @@
 package com.itis.bobrinskaya.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
+import java.io.Serializable;
 
 /**
  * Created by Ekaterina on 29.04.2016.
  */
 @Entity
 @SequenceGenerator(sequenceName = "productinorder_id_seq", name = "productinorder_gen", allocationSize = 1)
-public class Productinorder {
+public class Productinorder implements Serializable{
     private int id;
+    @JsonManagedReference
     private Orders orderByOrderId;
+    @JsonManagedReference
     private Product product;
 
     @Id

@@ -131,9 +131,9 @@
                         <li>
                             <div class="head">
                                 <div class="cell item">Товар</div>
-                                <div class="cell quantity">Количество</div>
+                                <#--<div class="cell quantity">Количество</div>-->
                                 <div class="cell item-price">Цена</div>
-                                <div class="cell item-total">Итого</div>
+                                <#--<div class="cell item-total">Итого</div>-->
                             </div>
                             <div class="body">
                                 <div class="cell item">
@@ -145,15 +145,15 @@
                                         <p>${p.getDescription()}.</p>
                                     </div>
                                 </div>
-                                <div class="cell quantity">
-                                    <input type="text" name="" value="1">
-                                </div>
+                                <#--<div class="cell quantity">-->
+                                    <#--<input type="text" name="" value="1">-->
+                                <#--</div>-->
                                 <div class="cell item-price">
                                     ${p.getPrice()}
                                 </div>
-                                <div class="cell item-total">
-                                    ???
-                                </div>
+                                <#--<div class="cell item-total">-->
+                                    <#--???-->
+                                <#--</div>-->
                             </div>
                             <form action="/cart/removeProduct">
                             <button type="submit" class="remove" name="prodremove" value="${p.getName()}">X</>
@@ -216,27 +216,6 @@
                 <span class="pop">0-24h</span>
             </div>
 
-            <div class="cart-box">
-                <div class="top">Cart</div>
-                <div class="body">
-                    <ul>
-                        <li class="info">
-                            <span class="products"><strong>5</strong> products</span>
-                            <a href="#">View cart</a>
-                        </li>
-                        <li class="price">
-                            <span class="label">Shipping</span>
-                            <span class="value">$0.00</span>
-                        </li>
-                        <li class="price">
-                            <span class="label">Total</span>
-                            <span class="value">$0.00</span>
-                        </li>
-                    </ul>
-                    <a class="submit-button" href="http://tiny.cc/lt774x">Check out</a>
-                    <div class="graphic"></div>
-                </div>
-            </div>
 
             <div class="separator dark box-and-meals"></div>
 

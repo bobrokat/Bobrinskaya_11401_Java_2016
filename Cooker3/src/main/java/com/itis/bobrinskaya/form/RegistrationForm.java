@@ -17,6 +17,9 @@ public class RegistrationForm {
     @Size(min = 6, max = 30, message = "пароль должен быть от 6 до 30 символов")
     @NotEmpty(message = "поле не должно быть пустым")
     private String password;
+    @Size(min = 6, max = 30, message = "пароль должен быть от 6 до 30 символов")
+    @NotEmpty(message = "поле не должно быть пустым")
+    private String repassword;
     private String role = "ROLE_USER";
 
     public String getRole() {
@@ -45,5 +48,13 @@ public class RegistrationForm {
 
     public void setPhone(String phone) {
         this.phone = phone;
+    }
+
+    public String getRepassword() {
+        return repassword;
+    }
+
+    public void setRepassword(String repassword) {
+        this.repassword = repassword;
     }
 }

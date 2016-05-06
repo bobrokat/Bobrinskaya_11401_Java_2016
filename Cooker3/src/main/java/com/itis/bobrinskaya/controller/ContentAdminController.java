@@ -39,6 +39,10 @@ public class ContentAdminController {
     @RequestMapping(value = "/addtoDB", method = RequestMethod.POST)
     public String addToDB(@RequestParam String name, @RequestParam double price, @RequestParam String type, @RequestParam String description, @RequestParam MultipartFile photo) {
         Product product = new Product();
+        if (productService.getOne(name) != null){
+            System.out.println("такой продукт уже есть");
+            return "redirect:/contentadmin";
+        }
         product.setName(name);
         product.setPrice(price);
         ProductTypeEnum productTypeEnum = null;
@@ -103,6 +107,18 @@ public class ContentAdminController {
 
             @RequestMapping(value = "/addtoSlider", method = RequestMethod.POST)
     public String addToSlider(  @RequestParam String prod1, @RequestParam String prod2, @RequestParam String prod3) {
+                if(productService.getOne(prod1) == null){
+                    System.out.println("Продукта с именем " + prod1 + " не существует ");
+                    return "redirect:/contentadmin";
+                }
+                if(productService.getOne(prod2) == null){
+                    System.out.println("Продукта с именем " + prod2 + " не существует ");
+                    return "redirect:/contentadmin";
+                }
+                if(productService.getOne(prod3) == null){
+                    System.out.println("Продукта с именем " + prod3 + " не существует ");
+                    return "redirect:/contentadmin";
+                }
         productService.updateslider(prod1, prod2, prod3);
                 return "redirect:/contentadmin";
 
@@ -110,6 +126,10 @@ public class ContentAdminController {
 
     @RequestMapping(value = "/removeProduct", method = RequestMethod.POST)
     public String removeProduct(@RequestParam String prodremove){
+        if (productService.getOne(prodremove) == null){
+            System.out.println("такого продукта не существует");
+            return "redirect:/contentadmin";
+        }
         Product product = productService.getOne(prodremove);
         productService.deleteProd(product);
 

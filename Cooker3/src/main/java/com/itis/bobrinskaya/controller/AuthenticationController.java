@@ -60,6 +60,14 @@ public class AuthenticationController {
         if (result.hasErrors()) {
             return "redirect:/index";
         }
+        if (userService.getOneByLogin(form.getLogin()) != null) {
+            System.out.println("login is used already");
+            return "redirect:/index";
+        }
+        if (!form.getPassword().equals(form.getRepassword())) {
+            System.out.println("passwords doesn't match");
+            return "redirect:/index";
+        }
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
         String login = form.getLogin();
         String phone = form.getPhone();

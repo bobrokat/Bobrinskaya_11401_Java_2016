@@ -31,6 +31,11 @@ public class OrderServiceimpl implements OrderService {
     }
 
     @Override
+    public List<Orders> getReady() {
+        return orderRepository.findReady();
+    }
+
+    @Override
     public Orders createNewOrder(Orders order) {
         return orderRepository.save(order);
     }

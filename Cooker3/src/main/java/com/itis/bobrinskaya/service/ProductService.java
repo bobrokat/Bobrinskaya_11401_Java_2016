@@ -18,13 +18,13 @@ public interface ProductService {
     void updateslider(String prod1, String prod2, String prod3);
     List<Product> getSlider();
 
-    void updateMealsOfDay(String prod1, String prod2, String prod3, String prod4, String prod5);
     List<Product> getMealsOfDay();
 
-    void updateFeaturedMeals(String prod1, String prod2, String prod3);
     List<Product> getFeaturedMeals();
 
     List<Product> sendToListing(ProductTypeEnum type);
 
     void createProduct(Product product);
+
+    void deleteProd(Product product);
 }

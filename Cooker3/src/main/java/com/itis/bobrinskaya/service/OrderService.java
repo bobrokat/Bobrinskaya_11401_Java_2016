@@ -11,6 +11,7 @@ import java.util.List;
 public interface OrderService {
     List<Orders> getAll();
     List<Orders> getNotReady();
+    List<Orders> getReady();
     Orders createNewOrder(Orders order);
     Productinorder addproducts(Productinorder productinorder);
 

@@ -1,7 +1,5 @@
 package com.itis.bobrinskaya.service.impl;
 
-import com.itis.bobrinskaya.model.Featuredmeals;
-import com.itis.bobrinskaya.model.Mealsofday;
 import com.itis.bobrinskaya.model.Product;
 import com.itis.bobrinskaya.model.Slider;
 import com.itis.bobrinskaya.model.enums.ProductTypeEnum;
@@ -12,6 +10,7 @@ import com.itis.bobrinskaya.repository.SliderRepository;
 import com.itis.bobrinskaya.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,6 +19,7 @@ import java.util.List;
  * Created by Ekaterina on 10.04.2016.
  */
 @Service
+
 public class ProductServiceImpl implements ProductService {
 
     @Autowired
@@ -50,7 +50,7 @@ public class ProductServiceImpl implements ProductService {
         list.add(prod1);
         list.add(prod2);
         list.add(prod3);
-        for(String prod : list){
+        for (String prod : list) {
             Slider element = new Slider();
             element.setProduct(productRepository.findByName(prod));
             sliderRepository.save(element);
@@ -63,68 +63,34 @@ public class ProductServiceImpl implements ProductService {
     public List<Product> getSlider() {
         List<Slider> list = sliderRepository.findAll();
         List<Product> products = new ArrayList<>();
-        for( Slider s : list){
+        for (Slider s : list) {
             products.add(s.getProduct());
         }
         return products;
     }
 
-    @Override
-    public void updateMealsOfDay(String prod1, String prod2, String prod3, String prod4, String prod5) {
-        mealsOfDayRepository.deleteAll();
-        List<String> list = new ArrayList<>();
-        list.add(prod1);
-        list.add(prod2);
-        list.add(prod3);
-        list.add(prod4);
-        list.add(prod5);
-        for(String prod : list){
-            Mealsofday element = new Mealsofday();
-            element.setProduct(productRepository.findByName(prod));
-            mealsOfDayRepository.save(element);
-        }
-
-
-
-    }
 
     @Override
     public List<Product> getMealsOfDay() {
-        List<Mealsofday> list = mealsOfDayRepository.findAll();
+        List<Product> allproducts = productRepository.findOrderById();
         List<Product> products = new ArrayList<>();
-        for(Mealsofday mealsofday: list){
-            products.add(mealsofday.getProduct());
+        for (int i = 0; i < 5; i++) {
+            products.add(allproducts.get(i));
         }
+
         return products;
     }
 
-    @Override
-    public void updateFeaturedMeals(String prod1, String prod2, String prod3) {
-        featuredmealsRepository.deleteAll();
-        List<String> list = new ArrayList<>();
-        list.add(prod1);
-        list.add(prod2);
-        list.add(prod3);
-        for(String prod : list){
-            Featuredmeals element = new Featuredmeals();
-            element.setProduct(productRepository.findByName(prod));
-            featuredmealsRepository.save(element);
-        }
-
-
-
-    }
 
     @Override
     public List<Product> getFeaturedMeals() {
-        List<Featuredmeals> list = featuredmealsRepository.findAll();
+        List<Product> list = productRepository.findOrderByPrice();
         List<Product> products = new ArrayList<>();
-        for( Featuredmeals s : list){
-            products.add(s.getProduct());
+        for (int i = 0; i < 3; i++) {
+            products.add(list.get(i));
         }
         return products;
     }
-
 
 
     @Override
@@ -137,4 +103,14 @@ public class ProductServiceImpl implements ProductService {
     public void createProduct(Product product) {
         productRepository.save(product);
     }
+
+    @Transactional
+    @Override
+    public void deleteProd(Product product) {
+        productRepository.delete(product);
+    }
 }
+
+
+
+

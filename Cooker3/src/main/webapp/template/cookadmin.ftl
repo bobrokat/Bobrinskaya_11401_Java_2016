@@ -86,6 +86,7 @@
                     <div class="text-center">
                     <div class="ajaxnav">
                         <a onclick="change('all')">Все</a>
+                        <a onclick="change('ready')">Отправленные</a>
                         <a onclick="change('notready')">Не отправленные</a>
                     </div>
 

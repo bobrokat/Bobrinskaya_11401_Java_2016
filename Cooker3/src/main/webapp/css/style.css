@@ -386,7 +386,7 @@ a.logo {
 }
 
 #meals-of-the-day .meal .img-holder img {
-    width: 327px;
+    width: 292px;
     height: 198px;
     overflow: hidden;
     margin: 0 0 5px 0;
@@ -543,6 +543,11 @@ a.logo {
 
 .cart-box {
     width: 255px;
+
+}
+
+.menu-info .cart-box{
+    float: right;
 }
 
 .cart-box .top {
@@ -2389,4 +2394,32 @@ input, textarea {
 
 .ajaxnav a :hover{
     background: #CDC3B3;
+}
+
+.access-denied{
+    margin-top: 300px;
+
+}
+.access-denied h1, h2{
+    color: black;
+   text-align: center
+}
+
+.access-denied h2 a, a:hover{
+    color: black;
+}
+
+#indextosinglebutton {
+    border: none;
+    background: none;
+    display: inline-block;
+    font-size: 21px;
+    line-height: 24px;
+    color: #ba1400;
+    text-decoration: none;
+
+}
+
+#remember-me{
+    width: 15px !important;
 }

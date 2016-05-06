@@ -50,7 +50,7 @@ public class CookAdminController {
         switch (select){
             case "notready": orders = orderService.getNotReady();
                 break;
-            case "ready" : orders =  orderService.getAll();
+            case "ready" : orders =  orderService.getReady();
                 break;
             case "all" : orders =  orderService.getAll();
                 break;

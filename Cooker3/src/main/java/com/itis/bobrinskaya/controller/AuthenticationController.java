@@ -28,6 +28,7 @@ public class AuthenticationController {
 
     @Autowired
     UserService userService;
+
     @RequestMapping(value = "/index")
     public String getLoginPage(@RequestParam(value = "error", required = false) Boolean error, Model model) {
         if (Boolean.TRUE.equals(error)) {
@@ -38,19 +39,19 @@ public class AuthenticationController {
 
     @RequestMapping("/default")
     public String defaultAfterLogin(HttpServletRequest request) {
-        if (request.isUserInRole("ROLE_CONTENT_ADMIN")) {
-            return "redirect:/contentadmin";
-        }
-        else if (request.isUserInRole("ROLE_COOK_ADMIN")){
-            return "redirect:/cookadmin";
-        }else if (request.isUserInRole("ROLE_USER")) {
-            List<Product> productsInCart = new ArrayList<>();
-            HttpSession session = request.getSession();
-            session.setAttribute("productsInCart", productsInCart);
-            return "redirect:/profile";
-        }  else {
-            return "redirect:/index";
-        }
+        HttpSession session = request.getSession();
+            if (request.isUserInRole("ROLE_CONTENT_ADMIN")) {
+                return "redirect:/contentadmin";
+            } else if (request.isUserInRole("ROLE_COOK_ADMIN")) {
+                return "redirect:/cookadmin";
+            } else if (request.isUserInRole("ROLE_USER")) {
+                List<Product> productsInCart = new ArrayList<>();
+                session.setAttribute("productsInCart", productsInCart);
+                return "redirect:/profile";
+            } else {
+                return "redirect:/index";
+            }
+
     }
 
 

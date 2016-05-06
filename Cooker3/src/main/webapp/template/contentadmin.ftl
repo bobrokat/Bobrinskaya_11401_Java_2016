@@ -172,45 +172,14 @@
 
 
             <hr />
-            <h2 class="heading">Добавление нового продуктов в блюда дня</h2>
-
-            <form method="post" action="/contentadmin/addtomealstofday" class="form contact-form">
-                <fieldset>
-                    <label for="dayprod1">Название продукта1: <span class="required"></span></label>
-                    <input type="text" id="dayprod1" name="prod1" class="input text">
-                    <label for="dayprod2">Название продукта2: <span class="required"></span></label>
-                    <input type="text" id="dayprod2" name="prod2" class="input text">
-                    <label for="dayprod3">Название продукта3: <span class="required"></span></label>
-                    <input type="text" id="dayprod3" name="prod3" class="input text">
-                    <label for="dayprod4">Название продукта4: <span class="required"></span></label>
-                    <input type="text" id="dayprod4" name="prod4" class="input text">
-                    <label for="dayprod5">Название продукта5: <span class="required"></span></label>
-                    <input type="text" id="dayprod5" name="prod5" class="input text">
-
-                    <button class="button" type="submit">Добавить продукты</button>
-                </fieldset>
-            </form>
+            <h2 class="heading">Удаление продукта</h2>
+            <form method="post" action="/contentadmin/removeProduct" class="form contact-form">
+                <label for="prod1">Название продукта: <span class="required"></span></label>
+                <input type="text" id="prodremove" name="prodremove" class="input text">
+                <button class="button" type="submit">Удалить продукт</button>
+                </form>
 
 
-            <hr />
-
-            <h2 class="heading">Добавление нового продуктов в особые блюда</h2>
-
-            <form method="post" action="/contentadmin/addtoFeatured" class="form contact-form">
-                <fieldset>
-                    <label for="featureprod1">Название продукта1: <span class="required"></span></label>
-                    <input type="text" id="featureprod1" name="prod1"class="input text">
-                    <label for="featureprod2">Название продукта2: <span class="required"></span></label>
-                    <input type="text" id="featureprod2" name="prod2" class="input text">
-                    <label for="featureprod3">Название продукта3: <span class="required"></span></label>
-                    <input type="text" id="featureprod3" name="prod3" class="input text">
-
-                    <button class="button" type="submit">Добавить продукты</button>
-                </fieldset>
-            </form>
-
-
-            <hr />
 
         </div>
     </div>

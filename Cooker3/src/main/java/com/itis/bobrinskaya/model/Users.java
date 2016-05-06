@@ -1,18 +1,24 @@
 package com.itis.bobrinskaya.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 /**
  * Created by Ekaterina on 20.04.2016.
  */
 @Entity
 @SequenceGenerator(sequenceName = "users_id_seq", name = "user_gen", allocationSize = 1)
-public class Users implements Serializable {
+public class Users implements Serializable, UserDetails{
+
+
     private int id;
     private String login;
     private String phone;
@@ -21,6 +27,8 @@ public class Users implements Serializable {
     private Integer bonus;
     @JsonBackReference
     private Collection<Orders> orders = new ArrayList<>();
+
+
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "user_gen")
@@ -53,11 +61,51 @@ public class Users implements Serializable {
         this.phone = phone;
     }
 
+
+    @Override
+    @Transient
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        List<GrantedAuthority> grantedAuthorities = new ArrayList<GrantedAuthority>();
+        grantedAuthorities.add(new SimpleGrantedAuthority(this.getRole()));
+        return grantedAuthorities;
+    }
+
     @Basic
     @Column(name = "password", nullable = false, insertable = true, updatable = true, length = 150)
     public String getPassword() {
         return password;
     }
+
+    @Override
+    @Transient
+    public String getUsername() {
+        return login;
+    }
+
+    @Override
+    @Transient
+    public boolean isAccountNonExpired() {
+        return true;
+    }
+
+    @Override
+    @Transient
+    public boolean isAccountNonLocked() {
+        return true;
+    }
+
+    @Override
+    @Transient
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
+    @Override
+    @Transient
+    public boolean isEnabled() {
+        return true;
+    }
+
 
     public void setPassword(String password) {
         this.password = password;
@@ -119,4 +167,6 @@ public class Users implements Serializable {
         result = 31 * result + (bonus != null ? bonus.hashCode() : 0);
         return result;
     }
+
+
 }

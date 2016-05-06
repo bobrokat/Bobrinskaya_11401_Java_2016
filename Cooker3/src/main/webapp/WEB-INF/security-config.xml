@@ -24,12 +24,15 @@
                              default-target-url="/default"
                              always-use-default-target="true"
                              authentication-failure-url="/index?error=true"/>
+        <security:logout delete-cookies="JSESSIONID" />
+        <security:remember-me key="secretToken" token-validity-seconds="36000" remember-me-parameter="remember-me"/>
         <security:logout logout-url="/logout" logout-success-url="/index"/>
         <security:csrf disabled="true"/>
         <security:access-denied-handler ref="accessDeniedHandler"/>
 
     </security:http>
 
+    <security:global-method-security secured-annotations="enabled" pre-post-annotations="enabled"/>
 
     <security:authentication-manager>
         <security:authentication-provider ref="authProvider"/>
@@ -40,4 +43,6 @@
     </bean>
 
     <bean id="authProvider" class="com.itis.bobrinskaya.security.AuthProviderImpl"/>
+    <bean class="com.itis.bobrinskaya.security.MyUserDetailService"/>
+
 </beans>

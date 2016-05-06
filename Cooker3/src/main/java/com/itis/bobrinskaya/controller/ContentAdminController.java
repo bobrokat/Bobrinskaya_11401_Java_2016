@@ -20,6 +20,7 @@ import java.io.IOException;
  * Created by Ekaterina on 15.04.2016.
  */
 @Controller
+@RequestMapping(value = "/contentadmin")
 @SessionAttributes (types = String.class)
 public class ContentAdminController {
 
@@ -29,13 +30,13 @@ public class ContentAdminController {
 
 
 
-    @RequestMapping(value = "/contentadmin", method = RequestMethod.GET)
+    @RequestMapping( value = "", method = RequestMethod.GET)
     public String getTopage() {
         return "contentadmin";
     }
 
 
-    @RequestMapping(value = "/contentadmin/addtoDB", method = RequestMethod.POST)
+    @RequestMapping(value = "/addtoDB", method = RequestMethod.POST)
     public String addToDB(@RequestParam String name, @RequestParam double price, @RequestParam String type, @RequestParam String description, @RequestParam MultipartFile photo) {
         Product product = new Product();
         product.setName(name);
@@ -61,7 +62,7 @@ public class ContentAdminController {
         product.setPhoto(savefile(photo));
 
         productService.createProduct(product);
-        return "contentadmin";
+        return "redirect:/contentadmin";
     }
 
     public String savefile(MultipartFile photo){
@@ -100,23 +101,19 @@ public class ContentAdminController {
         return "images/" + photo.getOriginalFilename();
     }
 
-            @RequestMapping(value = "/contentadmin/addtoSlider", method = RequestMethod.POST)
+            @RequestMapping(value = "/addtoSlider", method = RequestMethod.POST)
     public String addToSlider(  @RequestParam String prod1, @RequestParam String prod2, @RequestParam String prod3) {
         productService.updateslider(prod1, prod2, prod3);
-        return "contentadmin";
+                return "redirect:/contentadmin";
 
     }
 
+    @RequestMapping(value = "/removeProduct", method = RequestMethod.POST)
+    public String removeProduct(@RequestParam String prodremove){
+        Product product = productService.getOne(prodremove);
+        productService.deleteProd(product);
 
-    @RequestMapping(value = "/contentadmin/addtomealstofday", method = RequestMethod.POST)
-    public String addtoproductofday(@RequestParam String prod1, @RequestParam String prod2, @RequestParam String prod3, @RequestParam String prod4, @RequestParam String prod5){
-        productService.updateMealsOfDay(prod1, prod2, prod3, prod4, prod5);
-        return "contentadmin";
+        return "redirect:/contentadmin";
     }
 
-    @RequestMapping(value = "/contentadmin/addtoFeatured", method = RequestMethod.POST)
-    public String addToFeatured(  @RequestParam String prod1, @RequestParam String prod2, @RequestParam String prod3) {
-        productService.updateFeaturedMeals(prod1, prod2, prod3);
-        return "contentadmin";
-    }
 }

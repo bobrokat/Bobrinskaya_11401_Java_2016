@@ -104,10 +104,23 @@
             </ul>
         </div>
 
+        <div class="menu-info">
         <h1>${user.getLogin()}</h1>
 
             <h2>${user.getPhone()}</h2>
+
+            <div class="cart-box">
+                <div class="top">Корзина</div>
+                <div class="body">
+                    <ul>
+                        <li class="info">
+                    </ul>
+                    <a class="submit-button" href="/cart">Посмотреть</a>
+                    <div class="graphic"></div>
+                </div>
+            </div>
         <hr>
+        </div>
                 <h3>Мои бонусы:</h3>
                     <p>${user.getBonus()}</p>
 
@@ -145,16 +158,7 @@
 
 
     </div>
-    <div class="cart-box">
-        <div class="top">Корзина</div>
-        <div class="body">
-            <ul>
-                <li class="info">
-            </ul>
-            <a class="submit-button" href="/cart">Посмотреть</a>
-            <div class="graphic"></div>
-        </div>
-    </div>
+
 
 
 </div>

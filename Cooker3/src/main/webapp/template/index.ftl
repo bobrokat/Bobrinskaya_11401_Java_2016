@@ -33,11 +33,16 @@
             <label for="login-password">Пароль:</label>
             <input type="password" name="password" id="login-password" class="input text">
         </fieldset>
+        <div class="checks">
+            <div class="check-row">
+                <label for="remember-me">Запомнить меня:</label>
+                <input type="checkbox" id="remember-me" name="remember-me" class="input checkbox">
+            </div>
+        </div>
 
-    <hr class="separator">
-    <button type="submit" class="button submit">Войти</button>
-    <div class="links"><a href="#">Forgotten password </a> | <a href="#" class="register-btn"> New account</a></div>
-    <a class="close" href="#"></a>
+        <hr class="separator">
+        <button type="submit" class="button submit">Вход</button>
+        <a class="close" href="#"></a>
     </form>
 </div>
 
@@ -60,15 +65,6 @@
 
         <hr class="separator">
 
-        <div class="checks">
-            <div class="check-row">
-                <label><input type="checkbox" class="input checkbox">I have read and agree to the <a href="#">Terms &amp; Conditions</a></label>
-            </div>
-            <div class="check-row">
-                <label><input type="checkbox" class="input checkbox">I agree to recieve promotional mails</label>
-            </div>
-        </div>
-
         <button title="submit" class="button submit">Зарегистрироваться</button>
     </form>
     <a class="close" href="#"></a>
@@ -79,13 +75,13 @@
         <div class="top-nav">
             <nav>
                 <ul>
-                    <#if user == "anonymousUser">
-                        <li><a href="#" id="login-btn">Вход</a></li>
-                        <li><a href="#" class="register-btn">Регистрация</a></li>
-                   <#else >
-                       <li><a href="/default">Мой профиль</a></li>
-                       <li><a href="/logout">Выйти</a></li>
-                    </#if>
+                <#if user == "anonymousUser">
+                    <li><a href="#" id="login-btn">Вход</a></li>
+                    <li><a href="#" class="register-btn">Регистрация</a></li>
+                <#else >
+                    <li><a href="/default">Мой профиль</a></li>
+                    <li><a href="/logout">Выход</a></li>
+                </#if>
                 </ul>
             </nav>
 
@@ -100,12 +96,12 @@
             <ul>
                 <li id="lava-elm"></li>
                 <li class="current"><form action="/listing" >
-                    <button type="submit" value="KOMBO" name="type">Наборы</button>
+                    <button type="submit" value="KOMBO" name="type">Набаоры</button>
                 </form></li>
                 <li>
-                <form action="/listing" >
-                    <button type="submit" value="PIZZA" name="type">Пицца</button>
-                </form></li>
+                    <form action="/listing" >
+                        <button type="submit" value="PIZZA" name="type">Пицца</button>
+                    </form></li>
                 <li><form action="/listing" >
                     <button type="submit" value="ROLL" name="type">Роллы</button>
                 </form></li>
@@ -133,30 +129,31 @@
         <#list productsSlider as p>
             <li><img src= "${p.getPhoto()}" width="680px"  height="464" alt="" />
                 <div class="description"><span class='price'>${p.getPrice()}</span><span class='name'>${p.getName()}</span>
-                <form action="/single" method="get">
-                <button type="submit" name="productname" value=${p.getName()}>Подробнее</button>
-            </form>
+                    <form action="/single" method="get">
+                        <button type="submit" name="productname" value=${p.getName()}>Подробнее</button>
+                    </form>
             </li>
         </#list>
         </ul>
     </header>
     <div class="content clearfix">
         <div id="meals-of-the-day">
-            <h3 class="title-separator"><span class="title">Блюда дня</span><span class="sep"></span></h3>
+            <h3 class="title-separator"><span class="title">Новинки</span><span class="sep"></span></h3>
             <ul>
-                <#list productsOfDay  as prodOfDay>
-                    <li class="meal">
-                        <div class="img-holder"><img src=${prodOfDay.getPhoto()} alt=""></div>
-                        <div class="desc-holder">
-                            <h1><a href="#">${prodOfDay.getName()}</a></h1>
-                            <p>${prodOfDay.getDescription()}</p>
-                            <span class="price">${prodOfDay.getPrice()}</span>
-                            <form action="/cart" method="post">
-                                <button type="submit" name="productname" class="add-to-cart-button" value=${prodOfDay.getName()}>В корзину</button>
-                            </form>
-                        </div>
-                    </li>
-                </#list>
+            <#list productsOfDay  as prodOfDay>
+                <li class="meal">
+                    <div class="img-holder"><img src=${prodOfDay.getPhoto()} alt=""></div>
+                    <div class="desc-holder">
+                        <form action="/single" method="get">
+                            <button type="submit" id="indextosinglebutton" name="productname" value=${prodOfDay.getName()}>${prodOfDay.getName()}</button>
+                        </form>
+                        <span class="price">${prodOfDay.getPrice()}</span>
+                        <form action="/cart" method="post">
+                            <button type="submit" name="productname" class="add-to-cart-button" value=${prodOfDay.getName()}>В корзину</button>
+                        </form>
+                    </div>
+                </li>
+            </#list>
             </ul>
         </div>
         <h3 class="title-separator"><span class="title">Особые блюда</span><span class="sep"></span></h3>
@@ -164,17 +161,18 @@
 
         <div id="featured-meals">
             <ul>
-                <#list productsFeatured as prodFeatured>
-                    <li class="meal">
-                        <div class="img-holder"><img src=${prodFeatured.getPhoto()} alt=""></div>
-                        <h1><a href="#">${prodFeatured.getName()}</a></h1>
-                        <p>${prodFeatured.getDescription()}</p>
-                        <span class="price">${prodFeatured.getPrice()}</span>
-                        <form action="/cart" method="post">
-                            <button type="submit" name="productname" class="add-to-cart-button" value=${prodFeatured.getName()}>В корзину</button>
-                        </form>
-                    </li>
-                </#list>
+            <#list productsFeatured as prodFeatured>
+                <li class="meal">
+                    <div class="img-holder"><img src=${prodFeatured.getPhoto()} alt=""></div>
+                    <form action="/single" method="get">
+                        <button type="submit" id="indextosinglebutton" name="productname" value=${prodFeatured.getName()}>${prodFeatured.getName()}</button>
+                    </form>
+                    <span class="price">${prodFeatured.getPrice()}</span>
+                    <form action="/cart" method="post">
+                        <button type="submit" name="productname" class="add-to-cart-button" value=${prodFeatured.getName()}>В корзину</button>
+                    </form>
+                </li>
+            </#list>
             </ul>
         </div>
 
@@ -247,7 +245,6 @@
 
 <script type="text/javascript">
     // FRONT SLIDER STARTER
-
     jQuery(document).ready(function() {
         jQuery('#mycarousel').jcarousel({
             auto: 3,

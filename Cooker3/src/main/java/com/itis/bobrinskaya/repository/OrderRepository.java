@@ -15,6 +15,9 @@ public interface OrderRepository extends JpaRepository<Orders, Integer> {
     @Query("select o from Orders o where o.status = false ")
     List<Orders> findNotReady();
 
+    @Query("select o from Orders o where o.status = true ")
+    List<Orders> findReady();
+
     @Query("select max(o.id) from Orders o where o.user.id = :id")
     int findUsersLastOrder(@Param("id") int id);
 }

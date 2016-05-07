@@ -55,36 +55,45 @@
     <#--<h2>Регистрация</h2>-->
     <#--<hr class="separator">-->
 <#--<@form.form role = form method="post" action="/index" cssClass="form clearfix">-->
-    <#--<fieldset>-->
+    <#--&lt;#&ndash;<fieldset>&ndash;&gt;-->
     <#--<label for="login-username">Логин:</label>-->
         <#--<@form.input cssClass="input text" id="login-username" type="text" path="login" id="login"/>-->
         <#--<@form.errors path="login" cssStyle="color: red;" />-->
         <#--<label for="login-email">Телефон:</label>-->
-        <#--<@form.input name="phone" type = "text" path= "phone" id="login-email" cssClass="input text"/>-->
+        <#--<@form.input name="phone" type = "number" path= "phone" id="login-email" cssClass="input text"/>-->
         <#--<@form.errors path="phone" cssStyle="color: red;" />-->
         <#--<label for="login-password">Пароль:</label>-->
-        <#--<@form.input type="password" name="password" path="password" id="login-password" cssClass="input text"/>-->
+        <#--<@form.input type="password"  path="password" id="login-password" cssClass="input text"/>-->
         <#--<@form.errors path="password" cssStyle="color: red;" />-->
         <#--<label for="login-password">Повторите пароль:</label>-->
-        <#--<@form.input type="password" name="repassword" path="password" id="login-password" cssClass="input text"/>-->
+        <#--<@form.input type="password"  path="repassword" id="login-password" cssClass="input text"/>-->
         <#--<@form.errors path="repassword" cssStyle="color: red;" />-->
-    <#--</fieldset>-->
+    <#--&lt;#&ndash;</fieldset>&ndash;&gt;-->
+    <#--<hr class="separator">-->
+    <#--<button title="submit" class="button submit">Зарегистррироваться</button>-->
 <#--</@form.form>-->
 
 
         <h2>Регистрация</h2>
         <hr class="separator">
-        <form method="post" action="/index" class="form clearfix">
+        <form method="post" name="reg" action="/index" class="form clearfix">
             <fieldset>
-                <label for="login-username">Логин:</label>
-                <input type="text" name="login" id="login-username" class="input text">
-                <label for="login-email">Телефон:</label>
-                <input type="text" name="phone" id="login-email" class="input text" >
-                <label for="login-password">Пароль:</label>
-                <input type="password" name="password" id="login-password" class="input text">
-                <label for="login-confirm-password">Повторите пароль:</label>
-                <input type="password" name="repassword" id="login-confirm-password" class="input text">
+                <label for="loginreg">Логин:</label>
+                <input type="text" name="login" id="loginreg" class="input text" onchange="responseLogin()">
+                <br>
+                <p class="login_msg" id="infologin"></p>
+                <label for="phone">Телефон:</label>
+                <input type="text" name="phone" id="phone" class="input text" onchange="responsePhone()" >
+                <br>
+                <p class="phone_msg" id="infophone"></p>
+                <label for="password">Пароль:</label>
+                <input type="password" name="password" id="password" class="input text">
+                <label for="repassword">Повторите пароль:</label>
+                <input type="password" name="repassword" id="repassword" class="input text">
+                <br>
+                <p class="pass_msg" id="info"></p>
             </fieldset>
+
 
             <hr class="separator">
 
@@ -293,6 +302,7 @@
             <script type="text/javascript" src="/js/libs/jquery-1.7.1.min.js"></script>
             <script src="/js/libs/jquery.easing.1.3.js"></script>
             <script src="/js/script.js"></script>
+            <script src="/js/validator.js"></script>
             <script src="/js/libs/jquery.jcarousel.min.js"></script>
 
             <script type="text/javascript">

@@ -8,6 +8,7 @@
     <context:property-placeholder location="classpath:database.properties" ignore-unresolvable="true"/>
 
 
+
     <jpa:repositories base-package="com.itis.bobrinskaya.repository"/>
 
     <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
@@ -24,7 +25,7 @@
         <property name="jpaVendorAdapter">
             <bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
                 <property name="database" value="POSTGRESQL"/>
-                <property name="showSql" value="true"/>
+                <property name="showSql" value="false"/>
                 <property name="generateDdl" value="false"/>
                 <property name="databasePlatform" value="org.hibernate.dialect.PostgreSQL9Dialect"/>
             </bean>

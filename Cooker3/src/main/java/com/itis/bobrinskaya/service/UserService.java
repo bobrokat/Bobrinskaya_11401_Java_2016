@@ -13,4 +13,5 @@ public interface UserService {
      Users getOneByLogin(String login);
      void createUser(Users user);
 
+     Users getOneByPhone(String phone);
 }

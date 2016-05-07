@@ -128,8 +128,10 @@
 
             <form method="post" enctype="multipart/form-data" action="/contentadmin/addtoDB" class="form contact-form">
                 <fieldset>
-                    <label for="contact-your-name">Название: <span class="required"></span></label>
-                    <input type="text" id="contact-your-name" class="input text" name="name">
+                    <label for="prodname">Название: <span class="required"></span></label>
+                    <input type="text" id="prodname" class="input text" name="name" onchange="responsenewProd()">
+                    <br>
+                    <p class="prodname_msg" id="infoprodname"></p>
                     <label for="contact-subject">Цена:</label>
                     <input type="text" id="contact-subject" class="input text" name="price">
                     <label for="type-subject">Тип:</label>
@@ -160,11 +162,19 @@
             <form method="post" action="/contentadmin/addtoSlider" class="form contact-form">
                 <fieldset>
                     <label for="prod1">Название продукта1: <span class="required"></span></label>
-                    <input type="text" id="prod1" name="prod1" class="input text">
+                    <input type="text" id="prod1" name="prod1" class="input text" onchange="responseSlider()">
+                    <br>
+                    <p class="prod1_msg" id="infoprod1"></p>
+
                     <label for="prod2">Название продукта2: <span class="required"></span></label>
-                    <input type="text" id="prod2" name="prod2" class="input text">
+                    <input type="text" id="prod2" name="prod2" class="input text" onchange="responseSlider()">
+                    <br>
+                    <p class="prod2_msg" id="infoprod2"></p>
+
                     <label for="prod3">Название продукта3: <span class="required"></span></label>
-                    <input type="text" id="prod3" name="prod3" class="input text">
+                    <input type="text" id="prod3" name="prod3" class="input text" onchange="responseSlider()">
+                    <br>
+                    <p class="prod3_msg" id="infoprod3"></p>
 
                     <button class="button" type="submit">Добавить продукты</button>
                 </fieldset>
@@ -174,8 +184,10 @@
             <hr />
             <h2 class="heading">Удаление продукта</h2>
             <form method="post" action="/contentadmin/removeProduct" class="form contact-form">
-                <label for="prod1">Название продукта: <span class="required"></span></label>
-                <input type="text" id="prodremove" name="prodremove" class="input text">
+                <label for="prodremove">Название продукта: <span class="required"></span></label>
+                <input type="text" id="prodremove" name="prodremove" class="input text" onchange="responseremoveProd()">
+                <br>
+                <p class="prodremove_msg" id="infoprodremove"></p>
                 <button class="button" type="submit">Удалить продукт</button>
                 </form>
 
@@ -235,5 +247,6 @@
 <script src="../js/libs/jquery-1.7.1.min.js" type="text/javascript"></script>
 <script src="../js/libs/jquery.easing.1.3.js"></script>
 <script src="../js/script.js"></script>
+<script src="../js/validator.js"></script>
 <script src="../js/libs/jquery.jcarousel.min.js"></script>
 </html>

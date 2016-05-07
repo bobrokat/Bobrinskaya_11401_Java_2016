@@ -9,10 +9,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -61,9 +58,10 @@ public class AuthenticationController {
             return "redirect:/index";
         }
         if (userService.getOneByLogin(form.getLogin()) != null) {
-            System.out.println("login is used already");
             return "redirect:/index";
         }
+            //check(form.getLogin());
+
         if (!form.getPassword().equals(form.getRepassword())) {
             System.out.println("passwords doesn't match");
             return "redirect:/index";
@@ -78,8 +76,30 @@ public class AuthenticationController {
         user.setPassword(encoder.encode(password));
         user.setPhone(phone);
         user.setRole(role);
+        user.setBonus(0);
         userService.createUser(user);
-        return "redirect:/index";
+        return "redirect:/default";
     }
+
+    @RequestMapping(value = "/index/checklogin", method = RequestMethod.POST)
+    public @ResponseBody String check(@RequestParam String loginreg) {
+        if (userService.getOneByLogin(loginreg) != null) {
+            return "on";
+        } else {
+            return "off";
+        }
+
+    }
+
+    @RequestMapping(value = "/index/checkphone", method = RequestMethod.POST)
+    public @ResponseBody String checkphone(@RequestParam String phone) {
+        if (userService.getOneByPhone(phone) != null) {
+            return "on";
+        } else {
+            return "off";
+        }
+
+    }
+
 
 }

@@ -30,4 +30,9 @@ public class UserServiceImpl implements UserService {
     public void createUser(Users user) {
         userRepository.save(user);
     }
+
+    @Override
+    public Users getOneByPhone(String phone) {
+        return userRepository.findByPhone(phone);
+    }
 }

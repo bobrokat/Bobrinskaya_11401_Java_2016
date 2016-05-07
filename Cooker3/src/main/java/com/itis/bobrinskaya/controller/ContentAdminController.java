@@ -5,10 +5,7 @@ import com.itis.bobrinskaya.model.enums.ProductTypeEnum;
 import com.itis.bobrinskaya.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.BufferedOutputStream;
@@ -105,6 +102,17 @@ public class ContentAdminController {
         return "images/" + photo.getOriginalFilename();
     }
 
+    @RequestMapping(value = "/addtoDB/check", method = RequestMethod.POST)
+    public @ResponseBody
+    String checkphone(@RequestParam String prodname) {
+        if (productService.getOne(prodname) != null) {
+            return "on";
+        } else {
+            return "off";
+        }
+
+    }
+
             @RequestMapping(value = "/addtoSlider", method = RequestMethod.POST)
     public String addToSlider(  @RequestParam String prod1, @RequestParam String prod2, @RequestParam String prod3) {
                 if(productService.getOne(prod1) == null){
@@ -124,6 +132,26 @@ public class ContentAdminController {
 
     }
 
+    @RequestMapping(value = "/addtoSlider/check", method = RequestMethod.POST)
+    public @ResponseBody
+    String checkslider(@RequestParam String prod1,@RequestParam String prod2,@RequestParam String prod3) {
+        String returnvalue;
+        if (productService.getOne(prod1) == null && !prod1.equals("")) {
+            returnvalue = "prod1";
+        }
+         else if (productService.getOne(prod2) == null && !prod2.equals("")) {
+            returnvalue ="prod2";
+        }
+         else if (productService.getOne(prod3) == null && !prod3.equals("")) {
+            returnvalue = "prod3";
+
+        }else {
+            returnvalue = "off";
+        }
+        return returnvalue;
+
+    }
+
     @RequestMapping(value = "/removeProduct", method = RequestMethod.POST)
     public String removeProduct(@RequestParam String prodremove){
         if (productService.getOne(prodremove) == null){
@@ -135,5 +163,14 @@ public class ContentAdminController {
 
         return "redirect:/contentadmin";
     }
+    @RequestMapping(value = "/removeProduct/check", method = RequestMethod.POST)
+    public @ResponseBody
+    String checkremove(@RequestParam String prodremove) {
+        if (productService.getOne(prodremove) != null) {
+            return "on";
+        } else {
+            return "off";
+        }
 
+    }
 }

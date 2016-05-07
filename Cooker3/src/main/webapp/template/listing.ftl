@@ -35,10 +35,7 @@
                 </ul>
             </nav>
 
-            <form class="search-form" method="post">
-                <input type="text" class="search" placeholder="Search for product">
-                <input type="submit" class="search-submit" value="">
-            </form>
+
 
         </div>
         <a href="/index" class="logo"><img src="../images/logo.png" alt="your logo" /></a>
@@ -114,24 +111,14 @@
                 </ul>
             </div>
 
-            <#--<div class="paging mar-t-20">-->
-                <#--<ul>-->
-                    <#--<li class="prev"><a href="#">prev</a></li>-->
-                    <#--<li><a href="#">1</a></li>-->
-                    <#--<li><a href="#">2</a></li>-->
-                    <#--<li class="active"><a href="#">3</a></li>-->
-                    <#--<li><a href="#">4</a></li>-->
-                    <#--<li><a href="#">5</a></li>-->
-                    <#--<li class="next"><a href="#">next</a></li>-->
-                <#--</ul>-->
-            <#--</div>-->
+
         </div>
         <div class="right-content">
             <div class="call-us">
-                <span class="label">Call us now!</span>
-                <span class="pop phone">0800/ 567 345</span>
-                <span class="label">Working time:</span>
-                <span class="pop">0-24h</span>
+                <span class="label">Только сейчас!</span>
+                <span class="pop phone">100 бонусов</span>
+                <span class="label">При заказе от</span>
+                <span class="pop">1000 рублей</span>
             </div>
 
             <div class="cart-box">
@@ -149,7 +136,7 @@
 
             <div class="featured-meals">
 
-                <h2 class="heading">Featured meals</h2>
+                <h2 class="heading">Особые блюда</h2>
 
                 <div class="prev-next-buttons">
                     <a href="#" class="prev"></a>
@@ -164,7 +151,11 @@
                             <h1><a href="#">${prodFeatured.getName()}</a></h1>
                             <p>${prodFeatured.getDescription()}</p>
                             <span class="price">${prodFeatured.getPrice()}</span>
-                            <a href="check-out.html" class="add-to-cart-button">add to cart</a>
+                            <form action="/cart" method="post">
+                                <button type="submit" name="productname" class="add-to-cart-button"
+                                        value=${prodFeatured.getName()}>В корзину
+                                </button>
+                            </form>
                         </li>
                     </#list>
 
@@ -177,45 +168,17 @@
 <footer>
     <div class="footer-holder">
         <a href="" class="logo">Cooker Logo</a>
-        <div class="newsletter">
-            <div class="quote">
-                <h6>Newsletter</h6>
-                <p>Sign-up for our newsletter and be always aware of the new offers and services:</p>
-                <form method="post">
-                    <input type="text" placeholder="Email"><input type="submit" value="Submit" class="submit-button">
-                </form>
-            </div>
-        </div>
+
+
         <div class="links first">
-            <h6>follow us on...</h6>
+            <h6>Подписывайтесь</h6>
             <ul>
-                <li class="facebook"><a href="#">Facebook</a></li>
-                <li class="twitter"><a href="#">Twitter</a></li>
-                <li class="rss"><a href="#">Rss feed</a></li>
+                <li class="facebook"><a href="https://www.facebook.com/profile.php?id=100009318339260">Facebook</a></li>
+                <li class="twitter"><a href="https://twitter.com/bobrkate">Twitter</a></li>
+                <li class="rss"><a href="https://vk.com/id22146520">Vk</a></li>
             </ul>
         </div>
-        <div class="links">
-            <h6>useful links</h6>
-            <ul>
-                <li><a href="#">Specials</a></li>
-                <li><a href="#">New orders</a></li>
-                <li><a href="#">Terms and conditions of use</a></li>
-                <li><a href="#">About</a></li>
-                <li><a href="#">Contact</a></li>
-                <li><a href="#">Sitemap</a></li>
-            </ul>
-        </div>
-        <div class="links">
-            <h6>categories</h6>
-            <ul>
-                <li><a href="#">Fruits and vegetables</a></li>
-                <li><a href="#">Seafood</a></li>
-                <li><a href="#">Meat</a></li>
-                <li><a href="#">Entrees</a></li>
-                <li><a href="#">Pizza and pasta</a></li>
-                <li><a href="#">Desserts</a></li>
-            </ul>
-        </div>
+
         <div class="credits clearfix">
             Copyright &copy; 2011 Cooker. All rights reserved
         </div>

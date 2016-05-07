@@ -44,7 +44,11 @@
                                 "<form action='/cookadmin' method='post'>" +
                                 "Заказ готов: <input type='checkbox' name='checkbox' value='true'>" +
                                 "<button type='submit'  name='orderId' value='" + response_data[i].id  + "' class='add-to-cart-button'>ok</button>"
-                                + "</form></div>"
+                                + "</form>" +
+                                    "<form action='/pdf' method='post'>" +
+                            "<button type='submit' name='orderidid'  value='"+ response_data[i].id  +"' class='add-to-cart-button'>Бланк Заказа</button>"+
+                            "</form>"+
+                                "</div>"
 
                             )
 

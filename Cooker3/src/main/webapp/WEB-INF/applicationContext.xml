@@ -20,6 +20,14 @@
         <property name="maxUploadSize" value="500000" />
     </bean>
 
+    <!--Excel and PDF xml view configuration -->
+    <bean class="org.springframework.web.servlet.view.XmlViewResolver">
+        <property name="order" value="0" />
+        <property name="location">
+            <value>/WEB-INF/pdf-config.xml</value>
+        </property>
+    </bean>
+
     <!--&lt;!&ndash; Configure to plugin JSON as request and response in method handler &ndash;&gt;-->
     <!--<bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter">-->
         <!--<property name="messageConverters">-->

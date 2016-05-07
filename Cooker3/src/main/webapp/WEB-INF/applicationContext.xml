@@ -44,5 +44,6 @@
     <aop:aspectj-autoproxy/>
 
     <bean id="infoLogger" class="com.itis.bobrinskaya.logger.LoggerInfo"/>
+    <bean id="anotherpdfDocument"  class="com.itis.bobrinskaya.util.AnotherPdF"/>
 
 </beans>

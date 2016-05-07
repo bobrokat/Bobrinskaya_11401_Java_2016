@@ -8,5 +8,6 @@
 
     <!-- When a controller returns pdfDocument render the model with the spring.mvc.excelpdf.PDFDocument class -->
     <bean id="pdfDocument"  class="com.itis.bobrinskaya.util.PDFDocument"/>
+    <bean id="anotherpdfDocument"  class="com.itis.bobrinskaya.util.AnotherPdF"/>
 
 </beans>

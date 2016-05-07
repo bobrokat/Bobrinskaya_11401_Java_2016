@@ -12,6 +12,7 @@ import org.springframework.web.servlet.view.document.AbstractPdfView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.File;
 import java.util.Collection;
 import java.util.Map;
 
@@ -22,6 +23,8 @@ public class PDFDocument extends AbstractPdfView {
     @Override
     protected void buildPdfDocument(Map<String, Object> map, Document document, PdfWriter pdfWriter, HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) throws Exception {
         Orders order = (Orders) map.get("modelObject");
+        File file = new File("C:\\Work\\Bobrinskaya_11401_Java_2016\\Cooker3\\src\\main\\webapp\\images\\shot.PNG");
+        document.add((Element) file);
         document.add(new Phrase("Order : " + order.getId() + "\n\n"));
         document.add(new Phrase("Date: " + order.getDate() + "\n"));
         document.add(new Phrase("Client: " + order.getUser().getLogin() + "\n"));

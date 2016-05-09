@@ -103,7 +103,7 @@
                             <li id="lava-elm"></li>
                             <li class="current">
                                 <form action="/listing">
-                                    <button type="submit" value="KOMBO" name="type">Набаоры</button>
+                                    <button type="submit" value="KOMBO" name="type">Наборы</button>
                                 </form>
                             </li>
                             <li>

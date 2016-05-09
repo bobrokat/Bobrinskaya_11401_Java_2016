@@ -14,12 +14,8 @@ import org.springframework.stereotype.Service;
 public class UserServiceImpl implements UserService {
 
     @Autowired
-    UserRepository userRepository;
+   public UserRepository userRepository;
 
-    @Override
-    public Users getOneById(Long id) {
-       return userRepository.findOne(id);
-    }
 
     @Override
     public Users getOneByLogin(String login) {

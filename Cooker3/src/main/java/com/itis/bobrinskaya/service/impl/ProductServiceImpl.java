@@ -3,8 +3,6 @@ package com.itis.bobrinskaya.service.impl;
 import com.itis.bobrinskaya.model.Product;
 import com.itis.bobrinskaya.model.Slider;
 import com.itis.bobrinskaya.model.enums.ProductTypeEnum;
-import com.itis.bobrinskaya.repository.FeaturedmealsRepository;
-import com.itis.bobrinskaya.repository.MealsOfDayRepository;
 import com.itis.bobrinskaya.repository.ProductRepository;
 import com.itis.bobrinskaya.repository.SliderRepository;
 import com.itis.bobrinskaya.service.ProductService;
@@ -23,16 +21,10 @@ import java.util.List;
 public class ProductServiceImpl implements ProductService {
 
     @Autowired
-    ProductRepository productRepository;
+     public ProductRepository productRepository;
 
     @Autowired
-    SliderRepository sliderRepository;
-
-    @Autowired
-    MealsOfDayRepository mealsOfDayRepository;
-
-    @Autowired
-    FeaturedmealsRepository featuredmealsRepository;
+     public SliderRepository sliderRepository;
 
     public List<Product> getAll() {
         return productRepository.findAll();

@@ -8,10 +8,7 @@ import com.itis.bobrinskaya.model.Users;
 
 public interface UserService {
 
-
-     Users getOneById(Long id);
      Users getOneByLogin(String login);
      void createUser(Users user);
-
      Users getOneByPhone(String phone);
 }

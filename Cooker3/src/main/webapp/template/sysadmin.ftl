@@ -75,6 +75,8 @@
             <nav>
                 <ul>
                     <li><a href="/default">Мой профиль</a></li>
+                    <li><a href="/contentadmin/">Мой профиль</a></li>
+                    <li><a href="/cookadmin">Мой профиль</a></li>
                     <li><a href="/logout">Выйти</a></li>
                 </ul>
             </nav>
@@ -114,79 +116,40 @@
         <div class="breadcrumbs">
             <ul>
                 <li><a href="/index">Главная</a></li>
-                <li>Администратор кухни и доставки</li>
+                <li>Системный Администратор</li>
             </ul>
         </div>
         <div class="left-content">
 
 
 
-            <h2 class="heading">Добавление нового продукта  </h2>
-
-            <form method="post" enctype="multipart/form-data" action="/contentadmin/addtoDB" class="form contact-form">
+            <h2 class="heading">Добавление нового администратора</h2>
+            <form method="post" action="/sysadmin/addNewAdmin" class="form contact-form">
                 <fieldset>
-                    <label for="prodname">Название: <span class="required"></span></label>
-                    <input type="text" id="prodname" class="input text" name="name" oninput="responsenewProd()">
+                    <label for="loginreg">Логин:</label>
+                    <input type="text" name="login" id="loginreg" class="input text" oninput="responseLogin()">
                     <br>
-                    <p class="prodname_msg" id="infoprodname"></p>
-                    <label for="contact-subject">Цена:</label>
-                    <input type="text" id="contact-subject" class="input text" name="price">
-                    <label for="type-subject">Тип:</label>
-                    <select class="select-dropdown" id="type-subject" name="type" >
-                        <option value="KOMBO">Наборы</option>
-                        <option value="PIZZA">Пицца</option>
-                        <option value="ROLL">Роллы</option>
-                        <option value="DRINK">Напитки</option>
-                        <option value="DESERT">Десерты</option>
-                        <option value="WOK">Вок</option>
-                        <option value="ANOTHER">Дополнительно</option>
+                    <p class="login_msg" id="infologin"></p>
+                    <label for="phone">Телефон:</label>
+                    <input type="text" name="phone" id="phone" class="input text" oninput="responsePhone()" >
+                    <br>
+                    <p class="phone_msg" id="infophone"></p>
+                    <label for="password">Пароль:</label>
+                    <input type="password" name="password" id="password" class="input text">
+                    <label for="repassword">Повторите пароль:</label>
+                    <input type="password" name="repassword" id="repassword" class="input text">
+                    <br>
+                    <p class="pass_msg" id="info"></p>
+                    <label for="type-subject">Роль:</label>
+                    <select class="select-dropdown" id="type-subject" name="role" >
+                        <option value="ROLE_CONTENT_ADMIN">Администратор Контента</option>
+                        <option value="ROLE_COOK_ADMIN">Фдминистратор кухни и доставки</option>
                     </select>
-                    <label for="contact-details">Описание: <span class="required"></span></label>
-                    <textarea id="contact-details" rows="30" cols="50" class="input textarea" name="description"></textarea>
-                    <label for="exampleInputFile">Фотография: <span class="required"></span></label>
-                    <input type="file" name="photo" id="exampleInputFile">
-                    <br>
 
                     <span class="required-desr"></span>
-                    <button class="button" type="submit">Добавить продукт</button>
+                    <button class="button" type="submit">Добавить</button>
                 </fieldset>
             </form>
-
-
-            <hr />
-            <h2 class="heading">Добавление нового продуктов в слайдер</h2>
-
-            <form method="post" action="/contentadmin/addtoSlider" class="form contact-form">
-                <fieldset>
-                    <label for="prod1">Название продукта1: <span class="required"></span></label>
-                    <input type="text" id="prod1" name="prod1" class="input text" oninput="responseSlider()">
-                    <br>
-                    <p class="prod1_msg" id="infoprod1"></p>
-
-                    <label for="prod2">Название продукта2: <span class="required"></span></label>
-                    <input type="text" id="prod2" name="prod2" class="input text" oninput="responseSlider()">
-                    <br>
-                    <p class="prod2_msg" id="infoprod2"></p>
-
-                    <label for="prod3">Название продукта3: <span class="required"></span></label>
-                    <input type="text" id="prod3" name="prod3" class="input text" oninput="responseSlider()">
-                    <br>
-                    <p class="prod3_msg" id="infoprod3"></p>
-
-                    <button class="button" type="submit">Добавить продукты</button>
-                </fieldset>
-            </form>
-
-
-            <hr />
-            <h2 class="heading">Удаление продукта</h2>
-            <form method="post" action="/contentadmin/removeProduct" class="form contact-form">
-                <label for="prodremove">Название продукта: <span class="required"></span></label>
-                <input type="text" id="prodremove" name="prodremove" class="input text" oninput="responseremoveProd()">
-                <br>
-                <p class="prodremove_msg" id="infoprodremove"></p>
-                <button class="button" type="submit">Удалить продукт</button>
-                </form>
 
 
 

@@ -70,8 +70,8 @@
     <div class="content clearfix">
         <div class="breadcrumbs">
             <ul>
-                <li><a href="#">Home</a></li>
-                <li>Entrees</li>
+                <li><a href="/index">Главная</a></li>
+                <li>Листинг</li>
             </ul>
         </div>
         <div class="left-content">

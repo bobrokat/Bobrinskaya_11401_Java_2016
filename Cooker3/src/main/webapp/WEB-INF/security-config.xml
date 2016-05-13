@@ -16,6 +16,7 @@
         <security:intercept-url pattern="/cookadmin" access="hasAnyRole('ROLE_COOK_ADMIN', 'ROLE_SYSTEM_ADMIN')"/>
         <security:intercept-url pattern="/cart" access="hasAnyRole('ROLE_USER')"/>
         <security:intercept-url pattern="/profile/**" access="hasAnyRole('ROLE_USER')"/>
+        <security:intercept-url pattern="/sysadmin/**" access="hasAnyRole('ROLE_SYSTEM_ADMIN')"/>
 
         <security:form-login login-page="/index"
                              login-processing-url="/index/process"

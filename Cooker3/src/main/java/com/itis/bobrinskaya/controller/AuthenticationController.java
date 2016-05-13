@@ -41,6 +41,10 @@ public class AuthenticationController {
                 return "redirect:/contentadmin";
             } else if (request.isUserInRole("ROLE_COOK_ADMIN")) {
                 return "redirect:/cookadmin";
+            }
+            else if(request.isUserInRole("ROLE_SYSTEM_ADMIN")){
+                return "redirect:/sysadmin";
+
             } else if (request.isUserInRole("ROLE_USER")) {
                 List<Product> productsInCart = new ArrayList<>();
                 session.setAttribute("productsInCart", productsInCart);
@@ -70,12 +74,11 @@ public class AuthenticationController {
         String login = form.getLogin();
         String phone = form.getPhone();
         String password = form.getPassword();
-        String role = form.getRole();
         Users user = new Users();
         user.setLogin(login);
         user.setPassword(encoder.encode(password));
         user.setPhone(phone);
-        user.setRole(role);
+        user.setRole(form.getRole());
         user.setBonus(0);
         userService.createUser(user);
         return "redirect:/default";

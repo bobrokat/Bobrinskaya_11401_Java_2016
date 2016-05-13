@@ -28,7 +28,6 @@ function responseLogin(){
         type: 'post',
         url: "/index/checklogin",
         data: { "loginreg" : jQuery("#loginreg").val() },
-
         dataType: "text",
         success: function(response_data){
             console.log(response_data);

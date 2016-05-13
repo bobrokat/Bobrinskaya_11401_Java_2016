@@ -1,6 +1,7 @@
 package com.itis.bobrinskaya.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.itis.bobrinskaya.model.enums.RoleEnum;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -23,7 +24,7 @@ public class Users implements Serializable, UserDetails{
     private String login;
     private String phone;
     private String password;
-    private String role;
+    private RoleEnum role;
     private Integer bonus;
     @JsonBackReference
     private Collection<Orders> orders = new ArrayList<>();
@@ -66,7 +67,18 @@ public class Users implements Serializable, UserDetails{
     @Transient
     public Collection<? extends GrantedAuthority> getAuthorities() {
         List<GrantedAuthority> grantedAuthorities = new ArrayList<GrantedAuthority>();
-        grantedAuthorities.add(new SimpleGrantedAuthority(this.getRole()));
+        String role = null;
+        switch (this.getRole()){
+            case ROLE_CONTENT_ADMIN: role = "ROLE_CONTENT_ADMIN";
+                break;
+            case ROLE_COOK_ADMIN: role = "ROLE_COOK_ADMIN";
+                break;
+            case ROLE_SYSTEM_ADMIN: role = "ROLE_SYSTEM_ADMIN";
+                break;
+            case ROLE_USER: role = "ROLE_USER";
+                break;
+        }
+        grantedAuthorities.add(new SimpleGrantedAuthority(role));
         return grantedAuthorities;
     }
 
@@ -111,13 +123,14 @@ public class Users implements Serializable, UserDetails{
         this.password = password;
     }
 
-    @Basic
+
+    @Enumerated(EnumType.STRING)
     @Column(name = "role", nullable = false, insertable = true, updatable = true, length = 50)
-    public String getRole() {
+    public RoleEnum getRole() {
         return role;
     }
 
-    public void setRole(String role) {
+    public void setRole(RoleEnum role) {
         this.role = role;
     }
 

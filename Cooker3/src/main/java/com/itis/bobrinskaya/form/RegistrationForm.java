@@ -1,5 +1,6 @@
 package com.itis.bobrinskaya.form;
 
+import com.itis.bobrinskaya.model.enums.RoleEnum;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.validation.constraints.Size;
@@ -20,9 +21,9 @@ public class RegistrationForm {
     @Size(min = 6, max = 30, message = "пароль должен быть от 6 до 30 символов")
     @NotEmpty(message = "поле не должно быть пустым")
     private String repassword;
-    private String role = "ROLE_USER";
+    private RoleEnum role = RoleEnum.ROLE_USER;
 
-    public String getRole() {
+    public RoleEnum getRole() {
         return role;
     }
 

@@ -57,11 +57,11 @@
         <form method="post" name="reg" action="/index" class="form clearfix">
             <fieldset>
                 <label for="loginreg">Логин:</label>
-                <input type="text" name="login" id="loginreg" class="input text" onchange="responseLogin()">
+                <input type="text" name="login" id="loginreg" class="input text" oninput="responseLogin()">
                 <br>
                 <p class="login_msg" id="infologin"></p>
                 <label for="phone">Телефон:</label>
-                <input type="text" name="phone" id="phone" class="input text" onchange="responsePhone()" >
+                <input type="text" name="phone" id="phone" class="input text" oninput="responsePhone()" >
                 <br>
                 <p class="phone_msg" id="infophone"></p>
                 <label for="password">Пароль:</label>

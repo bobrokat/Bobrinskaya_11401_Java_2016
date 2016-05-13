@@ -6,5 +6,6 @@ package com.itis.bobrinskaya.model.enums;
 public enum RoleEnum {
     ROLE_USER,
     ROLE_CONTENT_ADMIN,
+    ROLE_COOK_ADMIN,
     ROLE_SYSTEM_ADMIN;
 }

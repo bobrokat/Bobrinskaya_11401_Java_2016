@@ -43,7 +43,18 @@ public class AuthProviderImpl implements AuthenticationProvider {
         }
 
         List<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();
-        authorities.add(new SimpleGrantedAuthority(user.getRole()));
+        String role = null;
+        switch (user.getRole()){
+            case ROLE_CONTENT_ADMIN: role = "ROLE_CONTENT_ADMIN";
+                break;
+            case ROLE_COOK_ADMIN: role = "ROLE_COOK_ADMIN";
+                break;
+            case ROLE_SYSTEM_ADMIN: role = "ROLE_SYSTEM_ADMIN";
+                break;
+            case ROLE_USER: role = "ROLE_USER";
+                break;
+        }
+        authorities.add(new SimpleGrantedAuthority(role));
 
         return new UsernamePasswordAuthenticationToken(user, null, authorities);
     }

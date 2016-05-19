@@ -75,8 +75,8 @@
             <nav>
                 <ul>
                     <li><a href="/default">Мой профиль</a></li>
-                    <li><a href="/contentadmin/">Мой профиль</a></li>
-                    <li><a href="/cookadmin">Мой профиль</a></li>
+                    <li><a href="/contentadmin/">Контент</a></li>
+                    <li><a href="/cookadmin">Кухня и дост       авка</a></li>
                     <li><a href="/logout">Выйти</a></li>
                 </ul>
             </nav>
@@ -143,7 +143,7 @@
                     <label for="type-subject">Роль:</label>
                     <select class="select-dropdown" id="type-subject" name="role" >
                         <option value="ROLE_CONTENT_ADMIN">Администратор Контента</option>
-                        <option value="ROLE_COOK_ADMIN">Фдминистратор кухни и доставки</option>
+                        <option value="ROLE_COOK_ADMIN">Администратор кухни и доставки</option>
                     </select>
 
                     <span class="required-desr"></span>

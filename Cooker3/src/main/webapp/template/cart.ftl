@@ -120,7 +120,7 @@
                     </ul>
                 </div>
                 <div class="buttons">
-                    <a class="button" href="/index">Продолжить</a>
+                    <a class="button" href="javascript:history.back();">Продолжить</a>
                     <a class="button" href="/cart/clear">Очистить корзину</a>
                 </div>
             </div>

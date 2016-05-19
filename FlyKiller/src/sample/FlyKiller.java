@@ -173,30 +173,41 @@ public class FlyKiller extends Application {
                     if (count == 0){
                         System.out.println("You win");
                         mainTimaline.stop();
+                        mainStage.close();
                         Stage stage = new Stage();
                         stage.setTitle("");
-                        Label label = new Label("Congratulations! You win!");
+                        Label label = new Label("Congratulations! You win!\n Start new game?");
                         label.setMinWidth(200);
                         label.setMinHeight(100);
                         label.setTextAlignment(TextAlignment.CENTER);
                         Group group = new Group();
-                        Button button = new Button("Start new game");
-                        button.setMinHeight(100);
-                        button.setMinWidth(200);
-                        button.setLayoutY(100);
-                        button.setOnAction(event1 -> {
+                        Button button1 = new Button("Yes");
+                        button1.setMinHeight(100);
+                        button1.setMinWidth(200);
+                        button1.setLayoutY(100);
+                        button1.setOnAction(event1 -> {
                             try {
-                                mainStage.close();
+
                                 stage.close();
                                 startGame();
                             } catch (InterruptedException e) {
                                 e.printStackTrace();
                             }
                         });
+
+                        Button button2 = new Button("No");
+                        button2.setMinHeight(100);
+                        button2.setMinWidth(200);
+                        button2.setLayoutY(200);
+                        button2.setOnAction(event1 -> {
+                            stage.close();
+                        });
                         group.getChildren().add(label);
-                        group.getChildren().add(button);
-                        stage.setScene(new Scene(group));
+                        group.getChildren().add(button1);
+                        group.getChildren().add(button2);
+                        stage.setScene(new Scene(group, 200, 300));
                         stage.show();
+
 
                     }
                 }

@@ -8,6 +8,7 @@ import javafx.geometry.Pos;
 import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.canvas.Canvas;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
@@ -77,6 +78,12 @@ public class FlyKiller extends Application {
         mainStage = new Stage();
         root = new Group();
         mainStage.setScene(createScene());
+        Canvas canvas = new Canvas(512, 512);
+        root.getChildren().add(canvas);
+//        GraphicsContext gc = canvas.getGraphicsContext2D();
+//        Image fon = new Image("/sample/soup.jpg");
+//        gc.drawImage(fon, 0, 0);
+
         mainStage.setTitle("FlyKiller");
         mainStage.show();
         startAnimation();
@@ -138,6 +145,7 @@ public class FlyKiller extends Application {
         }
 
          scene = new Scene(root, windowWidth, windowHeight);
+        scene.getStylesheets().add("sample/style.css");
         return scene;
 
     }

@@ -33,10 +33,7 @@
                 </ul>
             </nav>
 
-            <form class="search-form" method="post">
-                <input type="text" class="search" placeholder="Search for product">
-                <input type="submit" class="search-submit" value="">
-            </form>
+
 
         </div>
         <a href="/index" class="logo"><img src="../images/logo.png" alt="your logo"/></a>

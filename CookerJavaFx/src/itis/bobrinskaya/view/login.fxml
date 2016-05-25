@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="453.0" prefWidth="623.0" styleClass="background" stylesheets="@style.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="itis.bobrinskaya.view.LoginController">
+   <children>
+      <TextField fx:id="login" layoutX="217.0" layoutY="214.0" prefHeight="25.0" prefWidth="204.0" promptText="Логин" />
+      <PasswordField fx:id="password" layoutX="216.0" layoutY="280.0" prefHeight="25.0" prefWidth="204.0" promptText="Пароль" />
+      <Button fx:id="submit" layoutX="282.0" layoutY="337.0" mnemonicParsing="false" onAction="#maiInit" text="Войти" />
+      <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="212.0" layoutY="36.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@images/logo.png" />
+         </image>
+      </ImageView>
+   </children>
+</Pane>

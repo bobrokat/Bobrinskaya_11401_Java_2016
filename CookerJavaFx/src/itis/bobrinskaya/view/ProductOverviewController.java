@@ -1,15 +1,22 @@
 package itis.bobrinskaya.view;
 
+import com.itis.bobrinskaya.model.Product;
 import itis.bobrinskaya.MainApp;
-import itis.bobrinskaya.model.Product;
+import itis.bobrinskaya.service.ProductService;
+import itis.bobrinskaya.service.impl.ProductServiceImpl;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 
+import java.util.Collections;
 
 
 public class ProductOverviewController {
+
+	private ProductService productService = new ProductServiceImpl();
     @FXML
     private TableView<Product> productTable;
     @FXML
@@ -57,14 +64,25 @@ public class ProductOverviewController {
         this.mainApp = mainApp;
 
 
-        productTable.setItems(mainApp.getProductData());
+        productTable.setItems(getProducts());
     }
+
+	public Product getProd(String name){
+		return productService.getOneProd(name).getBody();
+	}
+
+	public ObservableList<Product> getProducts(){
+		ObservableList<Product> productData = FXCollections.observableArrayList();
+		Product[] products = productService.getProds().getBody();
+		Collections.addAll(productData, products);
+		return productData;
+	}
     
 
     private void showPersonDetails(Product product) {
     	if (product != null) {
 
-    		idLabel.setText(product.getId());
+    		idLabel.setText(String.valueOf(product.getId()));
     		nameLabel.setText(product.getName());
     		priceLabel.setText(String.valueOf(product.getPrice()));
     		descriptionLabel.setText((product.getDescription()));
@@ -86,7 +104,11 @@ public class ProductOverviewController {
 	private void handleDeletePerson() {
 		int selectedIndex = productTable.getSelectionModel().getSelectedIndex();
 		if (selectedIndex >= 0) {
+			Product product = productTable.getItems().get(selectedIndex);
 			productTable.getItems().remove(selectedIndex);
+
+			System.out.println(product.getName());
+			productService.deleteProduct(product.getId());
 		} else {
 
 		}

@@ -1,6 +1,7 @@
 package itis.bobrinskaya.view;
 
-import itis.bobrinskaya.model.Product;
+
+import com.itis.bobrinskaya.model.Product;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;

@@ -1,6 +1,7 @@
 package itis.bobrinskaya;
 
-import itis.bobrinskaya.model.Product;
+
+import com.itis.bobrinskaya.model.Product;
 import itis.bobrinskaya.view.LoginController;
 import itis.bobrinskaya.view.ProductEditDialogController;
 import itis.bobrinskaya.view.ProductOverviewController;
@@ -28,8 +29,8 @@ public class MainApp extends Application {
 
     public MainApp() {
 
-        productData.add(new Product("1", "Muster", "photo", "test1", 135));
-        productData.add(new Product("2", "Pizza", "photo", "test2", 136));
+//        productData.add(new Product("1", "Muster", "photo", "test1", 135));
+//        productData.add(new Product("2", "Pizza", "photo", "test2", 136));
 
     }
 

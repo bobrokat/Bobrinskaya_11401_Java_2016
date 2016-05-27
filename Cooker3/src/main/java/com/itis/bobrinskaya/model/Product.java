@@ -1,6 +1,8 @@
 package com.itis.bobrinskaya.model;
 
 import com.itis.bobrinskaya.model.enums.ProductTypeEnum;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -110,5 +112,16 @@ public class Product implements Serializable {
         result = 31 * result + (description != null ? description.hashCode() : 0);
         result = 31 * result + (photo != null ? photo.hashCode() : 0);
         return result;
+    }
+
+    public StringProperty idProperty() {
+        String s = String.valueOf(this.getId());
+        StringProperty idprop = new SimpleStringProperty(s);
+        return  idprop;
+    }
+
+    public StringProperty nameProperty() {
+        StringProperty nameprop = new SimpleStringProperty(this.getName());
+        return nameprop;
     }
 }

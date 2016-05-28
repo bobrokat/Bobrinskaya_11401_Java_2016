@@ -2,13 +2,15 @@ package itis.bobrinskaya.view;
 
 
 import com.itis.bobrinskaya.model.Product;
+import itis.bobrinskaya.service.ProductService;
+import itis.bobrinskaya.service.impl.ProductServiceImpl;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 
 public class ProductEditDialogController {
-
+    private ProductService productService = new ProductServiceImpl();
     @FXML
     private TextField nameField;
     @FXML
@@ -54,13 +56,14 @@ public class ProductEditDialogController {
     private void handleOk() {
         if (isInputValid()) {
             product.setName(nameField.getText());
-            product.setPrice(Integer.valueOf(priceField.getText()));
+            product.setPrice(Double.parseDouble(priceField.getText()));
             product.setDescription(descriptiontField.getText());
             product.setPhoto(photoField.getText());
 
 
             okClicked = true;
             dialogStage.close();
+         //   productService.createProd(product);
         }
     }
 

@@ -25,8 +25,16 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public void deleteProduct(int id) {
         MultiValueMap<String, Object> params = new LinkedMultiValueMap<>();
+        System.out.println(id);
         params.add("id", id);
-        //restTemplate.postForEntity(WebLinks.DELETE_PROD, params, Product.class);
+       // restTemplate.delete(WebLinks.DELETE_PROD, params);
+    }
+
+    @Override
+    public void createProd(Product product) {
+        MultiValueMap<String, Object> params = new LinkedMultiValueMap<>();
+        params.add("product", product);
+//        restTemplate.postForEntity(WebLinks.EDIT_PROD, params, Product.class);
     }
 
 

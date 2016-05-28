@@ -10,4 +10,5 @@ public interface WebLinks {
     String GET_NAMES = DOMAIN + "/getNames";
     String GET_PROD = DOMAIN + "/getProd";
     String DELETE_PROD = DOMAIN + "/deleteProd";
+    String EDIT_PROD = DOMAIN + "/editProd";
 }

@@ -13,4 +13,5 @@ ResponseEntity<Product[]> getProds();
     ResponseEntity<Product> getOneProd(String name);
     void deleteProduct(int id);
 
+    void createProd(Product product);
 }

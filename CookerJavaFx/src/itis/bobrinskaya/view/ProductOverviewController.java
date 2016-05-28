@@ -88,6 +88,7 @@ public class ProductOverviewController {
     		descriptionLabel.setText((product.getDescription()));
 			photoLabel.setText(product.getPhoto());
 
+
     	} else {
 
     		idLabel.setText("");

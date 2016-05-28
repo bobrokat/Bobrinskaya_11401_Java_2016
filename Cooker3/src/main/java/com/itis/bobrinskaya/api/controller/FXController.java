@@ -19,7 +19,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping(value = "api")
-public class AuthFXController {
+public class FXController {
     @Autowired
     AuthService authService;
 
@@ -64,6 +64,14 @@ public class AuthFXController {
     @RequestMapping(value = "/deleteProd", method = RequestMethod.POST)
     @ResponseBody
     public void deleteProd(int id) {
+        System.out.println(id);
         productRepository.delete(productRepository.findOne((long) id));
+    }
+
+    @RequestMapping(value = "/editProd", method = RequestMethod.POST)
+    @ResponseBody
+    public void editProd(Product product) {
+        System.out.println(product.getName());
+        productRepository.save(product);
     }
 }

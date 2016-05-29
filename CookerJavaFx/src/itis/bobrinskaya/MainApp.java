@@ -22,15 +22,13 @@ public class MainApp extends Application {
 
     private  Stage primaryStage;
     private BorderPane rootLayout;
+    private boolean newpprod;
     
 
     private ObservableList<Product> productData = FXCollections.observableArrayList();
 
 
     public MainApp() {
-
-//        productData.add(new Product("1", "Muster", "photo", "test1", 135));
-//        productData.add(new Product("2", "Pizza", "photo", "test2", 136));
 
     }
 
@@ -107,7 +105,7 @@ public class MainApp extends Application {
 
 
 			Stage dialogStage = new Stage();
-			dialogStage.setTitle("Внести изменения");
+			dialogStage.setTitle("Edit or add new");
 			dialogStage.initModality(Modality.WINDOW_MODAL);
 			dialogStage.initOwner(primaryStage);
 			Scene scene = new Scene(page);
@@ -117,9 +115,7 @@ public class MainApp extends Application {
 			ProductEditDialogController controller = loader.getController();
 			controller.setDialogStage(dialogStage);
 			controller.setProduct(product);
-
 			dialogStage.showAndWait();
-
 			return controller.isOkClicked();
 		} catch (IOException e) {
 			e.printStackTrace();

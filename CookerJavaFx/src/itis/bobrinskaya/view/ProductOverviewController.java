@@ -33,7 +33,8 @@ public class ProductOverviewController {
     @FXML
     private Label descriptionLabel;
 	@FXML
-	private Label photoLabel;
+	private Label typelabel;
+
 
 
 
@@ -67,9 +68,7 @@ public class ProductOverviewController {
         productTable.setItems(getProducts());
     }
 
-	public Product getProd(String name){
-		return productService.getOneProd(name).getBody();
-	}
+
 
 	public ObservableList<Product> getProducts(){
 		ObservableList<Product> productData = FXCollections.observableArrayList();
@@ -86,7 +85,7 @@ public class ProductOverviewController {
     		nameLabel.setText(product.getName());
     		priceLabel.setText(String.valueOf(product.getPrice()));
     		descriptionLabel.setText((product.getDescription()));
-			photoLabel.setText(product.getPhoto());
+			typelabel.setText(product.getType().toString());
 
 
     	} else {
@@ -95,7 +94,7 @@ public class ProductOverviewController {
     		nameLabel.setText("");
     		priceLabel.setText("");
     		descriptionLabel.setText("");
-			photoLabel.setText("");
+			typelabel.setText("");
 
     	}
     }
@@ -106,10 +105,9 @@ public class ProductOverviewController {
 		int selectedIndex = productTable.getSelectionModel().getSelectedIndex();
 		if (selectedIndex >= 0) {
 			Product product = productTable.getItems().get(selectedIndex);
-			productTable.getItems().remove(selectedIndex);
-
 			System.out.println(product.getName());
-			productService.deleteProduct(product.getId());
+			productTable.getItems().remove(selectedIndex);
+			productService.deleteProduct(product.getName());
 		} else {
 
 		}
@@ -118,26 +116,14 @@ public class ProductOverviewController {
 
 	@FXML
 	private void handleNewPerson() {
+		System.out.println("adding");
 		Product tempProduct = new Product();
 		boolean okClicked = mainApp.showPersonEditDialog(tempProduct);
 		if (okClicked) {
-			mainApp.getProductData().add(tempProduct);
+			this.productTable.getItems().add(tempProduct);
 		}
 	}
 
 
-	@FXML
-	private void handleEditPerson() {
-		Product selectedProduct = productTable.getSelectionModel().getSelectedItem();
-		if (selectedProduct != null) {
-			boolean okClicked = mainApp.showPersonEditDialog(selectedProduct);
-			if (okClicked) {
-				showPersonDetails(selectedProduct);
-			}
 
-		} else {
-
-
-		}
-	}
 }

@@ -2,14 +2,13 @@ package com.itis.bobrinskaya.api.controller;
 
 import com.itis.bobrinskaya.api.service.AuthService;
 import com.itis.bobrinskaya.model.Product;
+import com.itis.bobrinskaya.model.enums.ProductTypeEnum;
 import com.itis.bobrinskaya.repository.ProductRepository;
+import com.itis.bobrinskaya.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -22,6 +21,9 @@ import java.util.List;
 public class FXController {
     @Autowired
     AuthService authService;
+
+    @Autowired
+    ProductService productService;
 
     @Autowired
     ProductRepository productRepository;
@@ -44,7 +46,6 @@ public class FXController {
         Product[] products1 = new Product[products.size()];
         for(int i = 0; i < products.size(); i ++){
             products1[i] = products.get(i);
-            System.out.println(products1[i].getName());
         }
         ResponseEntity<Product[]> responseEntity = new ResponseEntity<Product[]>(products1, HttpStatus.OK);
         return  responseEntity;
@@ -63,15 +64,48 @@ public class FXController {
 
     @RequestMapping(value = "/deleteProd", method = RequestMethod.POST)
     @ResponseBody
-    public void deleteProd(int id) {
-        System.out.println(id);
-        productRepository.delete(productRepository.findOne((long) id));
+    public void deleteProd(@RequestParam("name") String name) {
+        if(productService.getOne(name) != null) {
+           productService.deleteProd(productService.getOne(name));
+        }
     }
 
-    @RequestMapping(value = "/editProd", method = RequestMethod.POST)
+
+    @RequestMapping(value = "/addProd", method = RequestMethod.POST)
     @ResponseBody
-    public void editProd(Product product) {
-        System.out.println(product.getName());
-        productRepository.save(product);
+    public void  addProd(
+                                             @RequestParam ("name") String name,
+                                             @RequestParam ("price") String price,
+                                             @RequestParam ("description") String description,
+                                             @RequestParam ("type")String type
+    ) {
+        System.out.println("from params " + name);
+        if(productService.getOne(name) == null){
+            Product product = new Product();
+            product.setName(name);
+            product.setPrice(Double.parseDouble(price));
+            product.setDescription(description);
+            product.setPhoto("images/meal-1.png");
+            ProductTypeEnum productTypeEnum = null;
+            switch (type){
+                case "PIZZA": productTypeEnum = ProductTypeEnum.PIZZA;
+                    break;
+                case "ROLL": productTypeEnum = ProductTypeEnum.ROLL;
+                    break;
+                case "WOK": productTypeEnum = ProductTypeEnum.WOK;
+                    break;
+                case "DESERT": productTypeEnum = ProductTypeEnum.DESERT;
+                    break;
+                case "DRINK": productTypeEnum = ProductTypeEnum.DRINK;
+                    break;
+                case "ANOTHER": productTypeEnum = ProductTypeEnum.ANOTHER;
+                    break;
+                case "ÑOMBO": productTypeEnum = ProductTypeEnum.KOMBO;
+            }
+            product.setType(productTypeEnum);
+            System.out.println("correct");
+            productService.createProduct(product);
+        }
+
     }
 }

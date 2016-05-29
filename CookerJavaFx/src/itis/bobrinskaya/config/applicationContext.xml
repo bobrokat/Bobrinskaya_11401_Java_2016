@@ -7,4 +7,5 @@
     <context:component-scan base-package="itis.bobrinskaya.service"/>
     <context:component-scan base-package="itis.bobrinskaya.view"/>
 
+
 </beans>

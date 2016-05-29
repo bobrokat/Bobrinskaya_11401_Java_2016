@@ -10,8 +10,7 @@ import org.springframework.http.ResponseEntity;
 public interface ProductService {
 
 ResponseEntity<Product[]> getProds();
-    ResponseEntity<Product> getOneProd(String name);
-    void deleteProduct(int id);
 
-    void createProd(Product product);
+    void deleteProduct(String name);
+    void addProd(String name, String price, String description, String type);
 }

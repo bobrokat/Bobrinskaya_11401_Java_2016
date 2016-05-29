@@ -24,7 +24,7 @@
 }
 
 .table-view {
-    -fx-base: #1d1d1d;
+    -fx-base: #bf2a18;
     -fx-control-inner-background: #f1ddb9;
     -fx-background-color: #f1ddb9;
     -fx-table-cell-border-color: transparent;
@@ -85,7 +85,7 @@
 }
 
 .menu .left-container {
-    -fx-background-color: black;
+    -fx-background-color: #bf2a18;
 }
 
 .text-field {
